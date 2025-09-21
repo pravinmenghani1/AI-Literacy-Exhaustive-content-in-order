@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Literacy: From NLP to Transformers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            overflow: hidden;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            padding: 60px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .slide.active {
+            display: flex;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            color: #ffd700;
+        }
+
+        h3 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #87ceeb;
+        }
+
+        p, li {
+            font-size: 1.3em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            max-width: 900px;
+        }
+
+        ul {
+            text-align: left;
+            max-width: 800px;
+        }
+
+        .evolution-timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+            margin: 30px 0;
+        }
+
+        .timeline-item {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 0 10px;
+            flex: 1;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .timeline-item:hover {
+            transform: scale(1.05);
+            background: rgba(255,255,255,0.2);
+        }
+
+        .architecture-demo {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: 30px 0;
+        }
+
+        .arch-box {
+            background: rgba(255,255,255,0.15);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 0 15px;
+            flex: 1;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .arch-box:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-10px);
+        }
+
+        .rnn-demo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .rnn-cell {
+            width: 80px;
+            height: 80px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            margin: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .arrow {
+            font-size: 2em;
+            color: #ffd700;
+        }
+
+        .transformer-visual {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 800px;
+            margin: 30px 0;
+        }
+
+        .attention-block {
+            background: rgba(255,215,0,0.2);
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid #ffd700;
+            transition: all 0.3s ease;
+        }
+
+        .attention-block:hover {
+            background: rgba(255,215,0,0.4);
+            transform: scale(1.05);
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(0,0,0,0.3);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 1.2em;
+        }
+
+        .interactive-element {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .interactive-element:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.02);
+        }
+
+        .highlight {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 30px 0;
+        }
+
+        .comparison-item {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .comparison-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-5px);
+        }
+
+        .key-takeaway {
+            background: linear-gradient(45deg, #ff6b6b, #ffd700);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            max-width: 900px;
+            font-size: 1.4em;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="slide-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">9</span>
+        </div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <h1>AI Literacy</h1>
+            <h2>From NLP Foundations to Transformers</h2>
+            <p>Building baseline knowledge of Generative AI and the Transformer architecture</p>
+            <div class="interactive-element" onclick="showDetails(this)">
+                <h3>🎯 Course Goals</h3>
+                <div style="display: none;">
+                    <p>• Understand the evolution of NLP approaches</p>
+                    <p>• Master Transformer architecture concepts</p>
+                    <p>• Explore modern LLMs and Generative AI</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Why NLP? -->
+        <div class="slide">
+            <h2>Why Natural Language Processing?</h2>
+            <div class="comparison-grid">
+                <div class="comparison-item">
+                    <h3>🔤 Language Structure</h3>
+                    <p>Bounded system with fixed vocabulary and grammar rules</p>
+                </div>
+                <div class="comparison-item">
+                    <h3>🖼️ Images (Comparison)</h3>
+                    <p>Open-ended domain, infinite visual possibilities</p>
+                </div>
+            </div>
+            <div class="interactive-element" onclick="animateLanguageComponents()">
+                <h3>Language Components</h3>
+                <div id="language-components">
+                    <p><span class="highlight">Vocabulary:</span> Mostly fixed, minor updates</p>
+                    <p><span class="highlight">Grammar:</span> Rules rarely change</p>
+                    <p><span class="highlight">Content:</span> Recombinations of existing concepts</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: NLP Stages -->
+        <div class="slide">
+            <h2>NLP Processing Stages</h2>
+            <div class="architecture-demo">
+                <div class="arch-box" onclick="highlightStage('nlu')">
+                    <h3>🧠 NLU</h3>
+                    <p>Natural Language Understanding</p>
+                    <p>Analyzing and understanding context</p>
+                </div>
+                <div class="arrow">→</div>
+                <div class="arch-box" onclick="highlightStage('nlg')">
+                    <h3>✍️ NLG</h3>
+                    <p>Natural Language Generation</p>
+                    <p>Producing contextual, relevant output</p>
+                </div>
+            </div>
+            <div class="interactive-element">
+                <h3>Task Examples</h3>
+                <p><span class="highlight">Understanding Only:</span> Sentiment analysis, Fill-in-the-blank</p>
+                <p><span class="highlight">Both Understanding & Generation:</span> Summarization, Translation</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: Evolution Timeline -->
+        <div class="slide">
+            <h2>Evolution of NLP Approaches</h2>
+            <div class="evolution-timeline">
+                <div class="timeline-item" onclick="showEvolutionDetails('rules')">
+                    <h3>📋 Rule-Based</h3>
+                    <p>Pre-1990s</p>
+                    <p>Hand-crafted grammar</p>
+                </div>
+                <div class="timeline-item" onclick="showEvolutionDetails('statistical')">
+                    <h3>📊 Statistical</h3>
+                    <p>1990s+</p>
+                    <p>Probabilistic models</p>
+                </div>
+                <div class="timeline-item" onclick="showEvolutionDetails('neural')">
+                    <h3>🧠 Neural Networks</h3>
+                    <p>2000s+</p>
+                    <p>RNNs, LSTMs, GRUs</p>
+                </div>
+                <div class="timeline-item" onclick="showEvolutionDetails('transformers')">
+                    <h3>⚡ Transformers</h3>
+                    <p>2017+</p>
+                    <p>Self-attention mechanism</p>
+                </div>
+            </div>
+            <div id="evolution-details" class="interactive-element" style="display: none;">
+                <p id="evolution-text"></p>
+            </div>
+        </div>
+
+        <!-- Slide 5: RNN Architecture -->
+        <div class="slide">
+            <h2>Recurrent Neural Networks (RNNs)</h2>
+            <div class="rnn-demo">
+                <div class="rnn-cell">Word 1</div>
+                <div class="arrow">→</div>
+                <div class="rnn-cell">Word 2</div>
+                <div class="arrow">→</div>
+                <div class="rnn-cell">Word 3</div>
+                <div class="arrow">→</div>
+                <div class="rnn-cell">Output</div>
+            </div>
+            <div class="comparison-grid">
+                <div class="comparison-item">
+                    <h3>✅ Strengths</h3>
+                    <ul>
+                        <li>Memory loop retains information</li>
+                        <li>Good for sequential data</li>
+                        <li>Handles variable-length inputs</li>
+                    </ul>
+                </div>
+                <div class="comparison-item">
+                    <h3>❌ Limitations</h3>
+                    <ul>
+                        <li>Long-term dependency problem</li>
+                        <li>Sequential training (slow)</li>
+                        <li>No parallelization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: LSTMs & GRUs -->
+        <div class="slide">
+            <h2>LSTMs & GRUs: Enhanced Memory</h2>
+            <div class="architecture-demo">
+                <div class="arch-box">
+                    <h3>🔒 LSTM</h3>
+                    <p>Long Short-Term Memory</p>
+                    <p>Forget Gate + Input Gate + Output Gate</p>
+                </div>
+                <div class="arch-box">
+                    <h3>🚪 GRU</h3>
+                    <p>Gated Recurrent Unit</p>
+                    <p>Simplified LSTM, fewer gates</p>
+                </div>
+            </div>
+            <div class="interactive-element" onclick="demonstrateGates()">
+                <h3>🧠 Memory Mechanism</h3>
+                <p>Click to see how gates control information flow</p>
+                <div id="gate-demo" style="display: none;">
+                    <p><span class="highlight">Forget Gate:</span> What to remove from memory</p>
+                    <p><span class="highlight">Input Gate:</span> What new information to store</p>
+                    <p><span class="highlight">Output Gate:</span> What to output based on memory</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Encoder-Decoder -->
+        <div class="slide">
+            <h2>Encoder-Decoder Architecture</h2>
+            <div class="architecture-demo">
+                <div class="arch-box">
+                    <h3>📥 Encoder</h3>
+                    <p>Processes input sequence</p>
+                    <p>Creates context vector</p>
+                </div>
+                <div class="arrow">→</div>
+                <div class="arch-box" style="background: rgba(255,215,0,0.2);">
+                    <h3>🎯 Context Vector</h3>
+                    <p>Compressed representation</p>
+                </div>
+                <div class="arrow">→</div>
+                <div class="arch-box">
+                    <h3>📤 Decoder</h3>
+                    <p>Generates output sequence</p>
+                    <p>Uses context vector</p>
+                </div>
+            </div>
+            <div class="interactive-element">
+                <h3>Translation Example</h3>
+                <p><span class="highlight">English:</span> "Hello, how are you?"</p>
+                <p><span class="highlight">Context Vector:</span> [0.2, -0.8, 0.5, ...]</p>
+                <p><span class="highlight">French:</span> "Bonjour, comment allez-vous?"</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: Transformers -->
+        <div class="slide">
+            <h2>Transformers: "Attention is All You Need"</h2>
+            <div class="transformer-visual">
+                <div class="attention-block">
+                    <h3>🎯 Self-Attention</h3>
+                    <p>Focus on important words</p>
+                </div>
+                <div class="attention-block">
+                    <h3>⚡ Parallelization</h3>
+                    <p>Process all words simultaneously</p>
+                </div>
+                <div class="attention-block">
+                    <h3>🔗 Long Dependencies</h3>
+                    <p>Connect distant words</p>
+                </div>
+            </div>
+            <div class="comparison-grid">
+                <div class="comparison-item">
+                    <h3>✅ Advantages</h3>
+                    <ul>
+                        <li>Solves long-term dependency</li>
+                        <li>Enables parallelization</li>
+                        <li>State-of-the-art results</li>
+                    </ul>
+                </div>
+                <div class="comparison-item">
+                    <h3>⚠️ Trade-offs</h3>
+                    <ul>
+                        <li>Computationally expensive</li>
+                        <li>High energy consumption</li>
+                        <li>Requires large datasets</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Modern LLMs & Key Takeaway -->
+        <div class="slide">
+            <h2>Generative AI & Large Language Models</h2>
+            <div class="interactive-element">
+                <h3>🚗 Transformers = Engine, LLMs = Car</h3>
+                <p>GPT, Gemini, LLaMA, Bloom LLM</p>
+            </div>
+            <div class="interactive-element">
+                <h3>🌍 Bloom LLM Example</h3>
+                <p>46 natural languages + 13 programming languages</p>
+                <p>Supports low-resource languages (Kissi → English)</p>
+            </div>
+            <div class="key-takeaway">
+                <h3>✅ Key Takeaway</h3>
+                <p>NLP evolved: Rules → Statistics → Neural Nets (RNN, LSTM, GRU) → Transformers (Self-Attention)</p>
+                <p><span class="highlight">Conceptual knowledge is 85% of the work!</span></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="previousSlide()">← Previous</button>
+        <button class="btn" onclick="nextSlide()">Next →</button>
+        <button class="btn" onclick="toggleFullscreen()">Fullscreen</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        function showDetails(element) {
+            const details = element.querySelector('div');
+            details.style.display = details.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function animateLanguageComponents() {
+            const components = document.querySelectorAll('#language-components p');
+            components.forEach((comp, index) => {
+                setTimeout(() => {
+                    comp.style.transform = 'scale(1.1)';
+                    comp.style.color = '#ffd700';
+                    setTimeout(() => {
+                        comp.style.transform = 'scale(1)';
+                        comp.style.color = 'white';
+                    }, 500);
+                }, index * 300);
+            });
+        }
+
+        function highlightStage(stage) {
+            document.querySelectorAll('.arch-box').forEach(box => {
+                box.style.background = 'rgba(255,255,255,0.15)';
+            });
+            event.target.closest('.arch-box').style.background = 'rgba(255,215,0,0.3)';
+        }
+
+        function showEvolutionDetails(era) {
+            const details = {
+                'rules': 'Hand-crafted grammar rules. Failed with scale and language exceptions.',
+                'statistical': 'Probabilistic models like Markov Chains. Learned patterns but lacked context.',
+                'neural': 'RNNs specialized in sequential data. Had memory but suffered from long-term dependencies.',
+                'transformers': 'Self-attention mechanism. Solved parallelization and long-term dependencies.'
+            };
+            
+            const detailsDiv = document.getElementById('evolution-details');
+            const textDiv = document.getElementById('evolution-text');
+            textDiv.textContent = details[era];
+            detailsDiv.style.display = 'block';
+        }
+
+        function demonstrateGates() {
+            const demo = document.getElementById('gate-demo');
+            demo.style.display = demo.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                previousSlide();
+            } else if (e.key === 'f' || e.key === 'F') {
+                toggleFullscreen();
+            }
+        });
+
+        // Auto-advance demo (optional)
+        let autoAdvance = false;
+        function toggleAutoAdvance() {
+            autoAdvance = !autoAdvance;
+            if (autoAdvance) {
+                setInterval(() => {
+                    if (autoAdvance) nextSlide();
+                }, 10000);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,620 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;\f2\fswiss\fcharset0 ArialMT;
+\f3\fswiss\fcharset0 Arial-BoldMT;}
+{\colortbl;\red255\green255\blue255;\red13\green14\blue16;\red255\green255\blue255;\red39\green170\blue96;
+\red73\green83\blue109;}
+{\*\expandedcolortbl;;\cssrgb\c5882\c6667\c7843;\cssrgb\c100000\c100000\c100000;\cssrgb\c16471\c70980\c45098\c14902;
+\cssrgb\c35686\c40392\c50196;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww38200\viewh20480\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Welcome to Machine learning. What is machine learning? You probably use it many times a day without even knowing it. Anytime you want to find out something like how do I make a sushi roll? You can do a web search on Google, Bing or Baidu to find out. And that works so well because their machine learning software has figured out how to rank web pages. Or when you upload pictures to Instagram or Snapchat and think to yourself, I want to tag my friends so they can see their pictures.\
+Well these apps can recognize your friends in your pictures and label them as well. That's also machine learning. Or if you've just finished watching a Star Wars movie on the video streaming service and you think what other similar movies can I watch? Well the streaming service will likely use machine learning to recommend something that you might like. Each time you use voice to text on your phone to write a text message. >> Hey Pravin, how's it going? >> Or tell your phone.\
+\
+Hey Siri play a song by Rihanna, or ask your other phone okay Google show me Indian restaurants near me. That's also machine learning. Each time you receive an email titled, Congratulations! You've won a million dollars. Well maybe you're rich, congratulations. Or more likely your email service will probably flag it as spam. That too is an application of machine learning.\
+\
+Beyond consumer applications that you might use, AI is also rapidly making its way into big companies and into industrial applications. For example, I'm deeply concerned about climate change, and I'm glad to see that machine learning is already hoping to optimize wind turbine power generation. Or in healthcare, is starting to make its way into hospitals to help doctors make accurate diagnosis. Or recently at Landing AI have been doing a lot of work, putting computer vision into factories to help inspect if something coming off the assembly line has any defects. That's machine learning, it's the science of getting computers to learn without being explicitly programmed. In this course, you learn about machine learning and get to implement machine learning and code yourself. \
+\
+And many learners ended up building exciting machine learning systems or even pursuing very successful careers in AI. I'm excited that you're on this journey with me. Welcome and let's get started.\
+\
+\
+
+\f1\b\fs48 Applications of Machine learning\
+
+\f0\b0\fs24 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs32 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 In this class, you'll learn about\'a0the state of the art and also\'a0practice implementing\'a0machine learning algorithms yourself.\'a0You'll learn about the most\'a0important machine learning algorithms,\'a0some of which are exactly\'a0what's being used in large AI or\'a0large tech companies today and you\'a0get a sense of what is the state of the art in AI.\'a0\cb4 Beyond learning the algorithms though, in this class,\'a0\cb3 you'll also learn all the important practical tips\'a0and tricks for making them perform well.\'a0You get to implement them and see\'a0how they work for yourself.\'a0Why is machine learning so widely used today?\'a0Machine Learning had grown up as\'a0a sub-field of AI or artificial intelligence.\'a0We wanted to build intelligent machines.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 It turns out that there are\'a0a few basic things that we could program a machine to do,\'a0such as how to find the shortest path from a to b,\'a0like in your GPS.\'a0But for the most part, we just did not know how to write\'a0an explicit program to\'a0do many of the more interesting things,\'a0such as perform web search,\'a0recognize human speech, diagnose\'a0diseases from X-rays or build a self-driving car.\'a0The only way we knew how to do these things\'a0was to have a machine learn to do it by itself.\'a0For me, when I founded\'a0and was leading the Google Brain Team,\'a0I worked on problems like speech recognition,\'a0computer vision for Google Maps,\'a0Street View images and advertising,\'a0or leading AI Baidu,\'a0I worked on everything from AI for augmented reality\'a0to combating payment fraud\'a0to leading a self-driving car team.\'a0Most recently, at landing.AI,\'a0AI Fund and Stanford University,\'a0I'm beginning to work on AI applications in the factory,\'a0large-scale agriculture, health care,\'a0e-commerce, and other problems.\'a0Today, there are hundreds of thousands,\'a0perhaps millions of people\'a0working on machine learning applications who\'a0could tell you similar stories\'a0about their work with machine learning.\'a0When you've learned these skills,\'a0I hope that you too will find the great fun to dabble\'a0in exciting different applications\'a0and maybe even different industries.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 In fact, I find it hard to think of\'a0any industry that machine learning is\'a0unlikely to touch in\'a0a significant way now or in the near future.\'a0Looking even further into the future,\'a0many people, including me,\'a0are excited about the AI dream of\'a0someday building machines as intelligent as you or me.\'a0This is sometimes called\'a0Artificial General Intelligence or AGI.\'a0I think AGI has been overhyped and\'a0we're still a long way away from that goal.\'a0I don't know. It'll take\'a050 years or 500 years or longer to get there.\'a0But mostly AI researchers\'a0believe that the best way to get\'a0closer toward that goal is by using learning algorithms.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 Maybe ones that take some inspiration\'a0from how the human brain works.\'a0You also hear a little more about\'a0this Quest for AGI later in this course.\'a0According to a study by McKinsey,\'a0AI and machine learning is estimated to create\'a0an additional 13 trillion US dollars\'a0of value annually by the year 2030.\'a0Even though machine learning is already creating\'a0tremendous amounts of value in the software industry,\'a0I think there could be\'a0even vastly greater value that has yet to be\'a0created outside the software industry\'a0in sectors such as retail,\'a0travel, transportation,\'a0automotive, materials manufacturing, and so on.\'a0Because of the massive untapped opportunities\'a0across so many different sectors,\'a0today there is a vast unfulfilled demand\'a0for this skill set.\'a0That's why this is such a great time to\'a0be learning about machine learning.\'a0If you find machine learning applications exciting,\'a0I hope you stick with me through this class.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 I can almost guarantee that you'll\'a0find mastering these skills worthwhile.\'a0In the next video, we'll look at\'a0a more formal definition of what is machine learning.\'a0And we'll begin to talk about\'a0the main types of\'a0machine learning problems and algorithms.\'a0You pick up some of\'a0the main machine learning terminology and start to get\'a0a sense of what are the different algorithms\'a0and when each one might be appropriate.\'a0So let's go on to the next video.\
+\
+
+\f3\b What is Machine learning?\
+\pard\pardeftab720\qc\partightenfactor0
+
+\f2\b0\fs24 \cf5 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 What is machine learning?\'a0In this video, you'll learn the definition of what it is\'a0and also get a sense of when you might want to apply it.\'a0Let's take a look together.\'a0Here's a definition of what is\'a0\cb4 machine learning that is attributed to Arthur Samuel.\'a0\cb3 He defined machine learning\'a0as the field of study that gives\'a0computers the ability to learn\'a0without being explicitly programmed.\'a0Samuel's claim to fame was that back in the 1950s,\'a0he wrote a checkers playing program.\'a0The amazing thing about\'a0this program was that Arthur Samuel\'a0himself wasn't a very good checkers player.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 What he did was he had programmed the computer\'a0to play maybe tens of thousands of games against itself.\'a0By watching what social support positions\'a0tend to lead to wins and what positions\'a0tend to lead to losses the checkers plane program\'a0learned over time what are\'a0good or bad suport positions by\'a0trying to get a good and avoid bad positions,\'a0this program learned to get better and better at playing\'a0checkers because the computer had\'a0the patience to play\'a0tens of thousands of games against itself.\'a0It was able to get\'a0so much checkers playing experience that\'a0eventually it became a better checkers player\'a0than also, Samuel himself.\'a0Now throughout these videos,\'a0besides me trying to talk about stuff,\'a0I occasionally ask you a question\'a0to help make sure you understand the content.\'a0Here's one about what happens if\'a0the computer had played far fewer games.\'a0Please take a look and pick\'a0whichever you think is the better answer.\'a0Thanks for looking at the quiz.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 If you had selected\'a0this answer would have\'a0made it worse then you got the right.\'a0In general, the more opportunities\'a0you give a learning algorithm to learn,\'a0the better it will perform.\'a0If you didn't select the correct answer the first time,\'a0that's totally okay too.\'a0The point of these questions isn't\'a0to see if you can get them\'a0all correctly on the first try.\'a0These questions are here just to help\'a0you practice the concepts you are learning.\'a0Arthur Samuel's definition was a rather\'a0informal one but in the next two videos,\'a0we'll dive deeper together into what are\'a0the major types of machine learning algorithms?\'a0In this course, you learn about\'a0many different learning algorithms.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 The two main types of machine learning are\'a0supervised learning and unsupervised learning.\'a0We'll define what these terms mean\'a0more in the next couple of videos.\'a0Of these two, supervised learning\'a0is the type of machine learning that is used most in\'a0many real-world applications and has\'a0seen the most rapid advancements and innovation.\'a0In this specialization,\'a0which has three courses in total,\'a0the first and second courses will\'a0focus on supervised learning,\'a0and the third will focus on unsupervised learning,\'a0recommender systems, and reinforcement learning.\'a0By far, the most used types of\'a0learning algorithms today are supervised learning,\'a0unsupervised learning, and recommender systems.\'a0The other thing we're going to spend a lot of\'a0time on in this specialization\'a0is practical advice for applying learning algorithms.\'a0This is something I feel pretty strongly about.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 Teaching about learning algorithms is like giving\'a0someone a set of tools and equally important,\'a0so even more important to making sure you\'a0have great tools is making sure\'a0you know how to apply them\'a0because like is it is somewhere where it\'a0gives you a state-of-the-art hammer\'a0or a state-of-the-art hand drill and say good luck.\'a0Now you have all the tools you need\'a0to build a three-story house.\'a0It doesn't really work like that\'a0and so too, in machine learning,\'a0making sure you have the tools is\'a0really important and so is making\'a0sure that you know how to apply\'a0the tools of machine learning effectively.\'a0That's what you get in this class,\'a0the tools as well as the\'a0skills to apply them effectively.\'a0I regularly visit with friends and\'a0teams in some of the top tech companies,\'a0and even today I see experienced machine learning teams\'a0apply machine learning algorithms to some problems,\'a0and sometimes they've been going at it for\'a0six months without much success.\'a0When I look at what they're doing,\'a0I sometimes feel like I could have told them\'a0six months ago that the current approach won't work\'a0and there's a different way of using\'a0these tools that will give\'a0them a much better chance of success.\'a0In this class, one of\'a0the relatively unique things you learn is\'a0you learn a lot about the best practices for\'a0how to actually develop a practical,\'a0valuable machine learning system.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 This way, you're less likely to\'a0end up in one of those teams that\'a0end up losing six months going in the wrong direction.\'a0In this class, you gain a sense of how\'a0the most skilled machine\'a0learning engineers build systems.\'a0I hope you finish\'a0this class as one of those very rare people in\'a0today's world that know how to\'a0design and build serious machine learning systems.\'a0That's machine learning.\'a0In the next video,\'a0let's look more deeply at what is\'a0supervised learning and also\'a0what is unsupervised learning.\'a0In addition, you'll learn\'a0when you might want to use each of them,\'a0supervised and unsupervised learning.\'a0I'll see you in the next video.\
+\
+Supervised learning\
+\
+Machine learning is creating\'a0tremendous economic value today.\'a0\cb4 I think 99 percent of the economic value\'a0\cb3 created by machine learning today\'a0is through one type of machine learning,\'a0which is called supervised learning.\'a0Let's take a look at what that means.\'a0Supervised machine learning or\'a0more commonly, supervised learning,\'a0refers to algorithms that learn x to\'a0y or input to output mappings.\'a0The key characteristic of supervised learning is\'a0that you give\'a0your learning algorithm examples to learn from.\'a0That includes the right answers, whereby right answer,\'a0I mean, the correct label y for a given input x,\'a0and is by seeing correct pairs of\'a0input x and desired output label y that\'a0the learning algorithm eventually learns to\'a0take just the input alone without\'a0the output label and gives\'a0a reasonably accurate prediction or guess of the output.\'a0Let's look at some examples.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 If the input x is\'a0an email and the output y is this email,\'a0spam or not spam,\'a0this gives you your spam filter.\'a0Or if the input is an audio clip and\'a0the algorithm's job is output the text transcript,\'a0then this is speech recognition.\'a0Or if you want to input English and have\'a0it output to corresponding Spanish,\'a0Arabic, Hindi, Chinese, Japanese,\'a0or something else translation,\'a0then that's machine translation.\'a0Or the most lucrative form of supervised learning\'a0today is probably used in online advertising.\'a0Nearly all the large online ad platforms have\'a0a learning algorithm that inputs some information about\'a0an ad and some information about you\'a0and then tries to figure out\'a0if you will click on that ad or not.\'a0Because by showing you ads they're\'a0just slightly more likely to click on,\'a0for these large online ad platforms,\'a0every click is revenue,\'a0this actually drives a lot of\'a0revenue for these companies.\'a0This is something I once done a lot of work on,\'a0maybe not the most inspiring application,\'a0but it certainly has a significant economic impact\'a0in some countries today.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 Or if you want to build a self-driving car,\'a0the learning algorithm would take as input\'a0an image and some information from\'a0other sensors such as a radar or\'a0other things and then try to output the position of,\'a0say, other cars so that\'a0your self-driving car can\'a0safely drive around the other cars.\'a0Or take manufacturing.\'a0I've actually done a lot of work in\'a0this sector at learning AI.\'a0You can have a learning algorithm takes as\'a0input a picture of a manufactured product,\'a0say a cell phone that just rolled off the production line\'a0and have the learning algorithm output\'a0whether or not there is a scratch,\'a0dent, or other defect in the product.\'a0This is called visual inspection and it's helping\'a0manufacturers reduce or prevent\'a0defects in their products.\'a0In all of these applications,\'a0you will first train your model with examples of\'a0inputs x and the right answers,\'a0that is the labels y.\'a0After the model has learned from these input,\'a0output, or x and y pairs,\'a0they can then take a brand new input x,\'a0something it has never seen before,\'a0and try to produce the\'a0appropriate corresponding output y.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 Let's dive more deeply into one specific example.\'a0Say you want to predict\'a0housing prices based on the size of the house.\'a0You've collected some data and say\'a0you plot the data and it looks like this.\'a0Here on the horizontal axis\'a0is the size of the house in square feet.\'a0Yes, I live in the United States\'a0where we still use square feet.\'a0I know most of the world uses square meters.\'a0Here on the vertical axis is the price of the house in,\'a0say, thousands of dollars.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 With this data, let's say a friend wants to know what's\'a0the price for their 750 square foot house.\'a0How can the learning algorithm help you?\'a0One thing a learning algorithm\'a0might be able to do is say,\'a0for the straight line to\'a0the data and reading off the straight line,\'a0it looks like your friend's house could\'a0be sold for maybe about,\'a0I don't know, $150,000.\'a0But fitting a straight line isn't\'a0the only learning algorithm you can use.\'a0There are others that could work\'a0better for this application.\'a0For example, routed and fitting a straight line,\'a0you might decide that it's better to fit a curve,\'a0a function that's slightly more\'a0complicated or more complex than a straight line.\'a0If you do that and make a prediction here,\'a0then it looks like, well,\'a0your friend's house could be sold for closer to $200,000.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 One of the things you see later in this class\'a0is how you can decide whether to fit a straight line,\'a0a curve, or\'a0another function that is even more complex to the data.\'a0Now, it doesn't seem appropriate to pick\'a0the one that gives your friend the best price,\'a0but one thing you see is how to get\'a0an algorithm to systematically\'a0choose the most appropriate line or\'a0curve or other thing to fit to this data.\'a0What you've seen in this slide is\'a0an example of supervised learning.\'a0Because we gave the algorithm a dataset in\'a0which the so-called right answer,\'a0that is the label or\'a0the correct price y is given for every house on the plot.\'a0The task of the learning algorithm is to\'a0produce more of these right answers,\'a0specifically predicting what is\'a0the likely price for\'a0other houses like your friend's house.\'a0That's why this is supervised learning.\'a0To define a little bit more terminology,\'a0this housing price prediction is\'a0the particular type of supervised learning\'a0called regression.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 By regression, I mean we're trying\'a0to predict a number from\'a0infinitely many possible numbers\'a0such as the house prices in our example,\'a0which could be 150,000 or\'a070,000 or 183,000 or any other number in between.\'a0That's supervised learning, learning input,\'a0output, or x to y mappings.\'a0You saw in this video an example of\'a0regression where the task is to predict number.\'a0But there's also a second major type of\'a0supervised learning problem called classification.\'a0Let's take a look at what that means in the next video.\
+\
+So supervised learning algorithms learn to predict input, output or X to Y mapping.\'a0\cb4 And in the last video you saw that regression algorithms,\'a0\cb3 which is a type of supervised learning algorithm learns to predict numbers out\'a0of infinitely many possible numbers.\'a0There's a second major type of supervised learning algorithm called a classification\'a0algorithm.\'a0Let's take a look at what this means.\'a0Take breast cancer detection as an example of a classification problem.\'a0Say you're building a machine learning system so\'a0that doctors can have a diagnostic tool to detect breast cancer.\'a0This is important because early detection could potentially save a patient's life.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 Using a patient's medical records your machine learning system tries to\'a0figure out if a tumor that is a lump is malignant meaning cancerous or dangerous.\'a0Or if that tumor, that lump is benign, meaning that it's just\'a0a lump that isn't cancerous and isn't that dangerous?\'a0Some of my friends have actually been working on this specific problem.\'a0So maybe your dataset has tumors of various sizes.\'a0And these tumors are labeled as either benign,\'a0which I will designate in this example with a 0 or\'a0malignant, which will designate in this example with a 1.\'a0You can then plot your data on a graph like this where\'a0the horizontal axis represents the size of the tumor and\'a0the vertical axis takes on only two values 0 or\'a01 depending on whether the tumor is benign, 0 or malignant 1.\'a0One reason that this is different from regression is that we're trying to predict\'a0only a small number of possible outputs or categories.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 In this case two possible\'a0outputs 0 or 1,\'a0benign or malignant.\'a0This is different from regression which tries to predict any number,\'a0all of the infinitely many number of possible numbers.\'a0And so the fact that there are only two possible outputs is\'a0what makes this classification.\'a0Because there are only two possible outputs or\'a0two possible categories in this example,\'a0you can also plot this data set on a line like this.\'a0Right now, I'm going to use two different symbols to denote\'a0the category using a circle an O to denote the benign examples and\'a0a cross to denote the malignant examples.\'a0And if new patients walks in for a diagnosis and\'a0they have a lump that is this size, then the question is,\'a0will your system classify this tumor as benign or malignant?\'a0It turns out that in classification problems you can also have more than two\'a0possible output categories.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 Maybe you're learning algorithm can output multiple types of cancer\'a0diagnosis if it turns out to be malignant.\'a0So let's call two different types of cancer type 1 and type 2.\'a0In this case the average would have three possible output\'a0categories it could predict.\'a0And by the way in classification, the terms output classes and\'a0output categories are often used interchangeably.\'a0So what I say class or category when referring to the output,\'a0it means the same thing.\'a0So to summarize classification algorithms predict categories.\'a0Categories don't have to be numbers.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 It could be non numeric for example,\'a0it can predict whether a picture is that of a cat or a dog.\'a0And it can predict if a tumor is benign or malignant.\'a0Categories can also be numbers like 0, 1 or 0, 1, 2.\'a0But what makes classification different from regression when\'a0you're interpreting the numbers is that classification predicts\'a0a small finite limited set of possible output categories such as 0, 1 and\'a02 but not all possible numbers in between like 0.5 or 1.7.\'a0In the example of supervised learning that we've been looking at,\'a0we had only one input value the size of the tumor.\'a0But you can also use more than one input value to predict an output.\'a0Here's an example, instead of just knowing the tumor size,\'a0say you also have each patient's age in years.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 Your new data set now has two inputs, age and tumor size.\'a0What in this new dataset we're going to use circles to show patients whose tumors\'a0are benign and crosses to show the patients with a tumor that was malignant.\'a0So when a new patient comes in, the doctor can measure the patient's tumor size and\'a0also record the patient's age.\'a0And so given this,\'a0how can we predict if this patient's tumor is benign or malignant?\'a0Well, given the day said like this, what the learning algorithm might do\'a0is find some boundary that separates out the malignant tumors from the benign ones.\'a0So the learning algorithm has to decide how to fit a boundary line\'a0through this data.\'a0The boundary line found by the learning algorithm would help the doctor with\'a0the diagnosis.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 In this case the tumor is more likely to be benign.\'a0From this example we have seen how to inputs the patient's age and\'a0tumor size can be used.\'a0In other machine learning problems often many more input values are required.\'a0My friends who worked on breast cancer detection use many additional inputs,\'a0like the thickness of the tumor clump, uniformity of the cell size,\'a0uniformity of the cell shape and so on.\'a0So to recap supervised learning maps input x to output y,\'a0where the learning algorithm learns from the quote right answers.\'a0The two major types of supervised learning our regression and classification.\'a0In a regression application like predicting prices of houses, the learning\'a0algorithm has to predict numbers from infinitely many possible output numbers.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 Whereas in classification the learning algorithm has to make a prediction of\'a0a category, all of a small set of possible outputs.\'a0So you now know what is supervised learning,\'a0including both regression and classification.\'a0I hope you're having fun.\'a0Next there's a second major type of machine learning\'a0called unsupervised learning.\'a0Let's go on to the next video to see what that is\cb1 \
+\
+
+\f3\b Unsupervised learning\
+
+\f2\b0 \cb3 After supervised learning,\'a0\cb4 the most widely used form of machine learning is unsupervised learning.\'a0\cb3 Let's take a look at what that means, we've talked about supervised learning and\'a0this video is about unsupervised learning.\'a0But don't let the name uncivilized for you,\'a0unsupervised learning is I think just as super as supervised learning.\'a0When we're looking at supervised learning in the last video recalled,\'a0it looks something like this in the case of a classification problem.\'a0Each example, was associated with an output label y such as benign or\'a0malignant, designated by the poles and crosses in unsupervised learning.\'a0Were given data that isn't associated with any output labels y,\'a0say you're given data on patients and their tumor size and the patient's age.\'a0But not whether the tumor was benign or malignant, so\'a0the dataset looks like this on the right.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 We're not asked to diagnose whether the tumor is benign or\'a0malignant, because we're not given any labels.\'a0Why in the dataset, instead, our job is to find some structure or\'a0some pattern or just find something interesting in the data.\'a0This is unsupervised learning,\'a0we call it unsupervised because we're not trying to supervise the algorithm.\'a0To give some quote right answer for every input, instead,\'a0we asked the our room to figure out all by yourself what's interesting.\'a0Or what patterns or structures that might be in this data,\'a0with this particular data set.\'a0An unsupervised learning algorithm, might decide that\'a0the data can be assigned to two different groups or two different clusters.\'a0And so it might decide, that there's one cluster what group over here,\'a0and there's another cluster or group over here.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 This is a particular type of unsupervised learning, called a clustering algorithm.\'a0Because it places the unlabeled data, into different clusters and\'a0this turns out to be used in many applications.\'a0For example, clustering is used in google news,\'a0what google news does is every day it goes.\'a0And looks at hundreds of thousands of news articles on the internet, and\'a0groups related stories together.\'a0For example, here is a sample from Google News, where the headline of the top\'a0article, is giant panda gives birth to rear twin cubs at Japan's oldest zoo.\'a0This article has actually caught my eye, because my daughter loves pandas and so\'a0there are a lot of stuff panda toys.\'a0And watching panda videos in my house, and looking at this,\'a0you might notice that below this are other related articles.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 Maybe from the headlines alone,\'a0you can start to guess what clustering might be doing.\'a0Notice that the word panda appears here here,\'a0here, here and here and notice that the word\'a0twin also appears in all five articles.\'a0And the word Zoo also appears in all of these articles, so\'a0the clustering algorithm is finding articles.\'a0All of all the hundreds of thousands of news articles on the internet that day,\'a0finding the articles that mention similar words and grouping them into clusters.\'a0Now, what's cool is that this clustering algorithm figures out on his own which\'a0words suggest, that certain articles are in the same group.\'a0What I mean is there isn't an employee at google news who's telling the algorithm to\'a0find articles that the word panda.\'a0And twins and zoo to put them into the same cluster,\'a0the news topics change every day.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 And there are so many news stories, it just isn't feasible to people\'a0doing this every single day for all the topics that use covers.\'a0Instead the algorithm has to figure out on his own without supervision,\'a0what are the clusters of news articles today.\'a0So that's why this clustering algorithm,\'a0is a type of unsupervised learning algorithm.\'a0Let's look at the second example of unsupervised learning\'a0applied to clustering genetic or DNA data.\'a0This image shows a picture of DNA micro array data,\'a0these look like tiny grids of a spreadsheet.\'a0And each tiny column represents the genetic or DNA activity of one person,\'a0So for example, this entire Column here is from one person's DNA.\'a0And this other column is of another person,\'a0each row represents a particular gene.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 So just as an example, perhaps this role here might represent a gene that\'a0affects eye color, or this role here is a gene that affects how tall someone is.\'a0Researchers have even found a genetic link to whether someone dislikes certain\'a0vegetables, such as broccoli, or brussels sprouts, or asparagus.\'a0So next time someone asks you why didn't you finish your salad,\'a0you can tell them, maybe it's genetic for DNA micro race.\'a0The idea is to measure how much certain genes, are expressed for\'a0each individual person.\'a0So these colors red, green, gray, and so on, show the degree to\'a0which different individuals do, or do not have a specific gene active.\'a0And what you can do is then run a clustering algorithm to group\'a0individuals into different categories.\'a0Or different types of people like maybe these individuals that group together,\'a0and let's just call this type one.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 And these people are grouped into type two,\'a0and these people are groups as type three.\'a0This is unsupervised learning, because we're not telling the algorithm in\'a0advance, that there is a type one person with certain characteristics.\'a0Or a type two person with certain characteristics,\'a0instead what we're saying is here's a bunch of data.\'a0I don't know what the different types of people are but\'a0can you automatically find structure into data.\'a0And automatically figure out whether the major types of individuals,\'a0since we're not giving the algorithm the right answer for the examples in advance.\'a0This is unsupervised learning, here's the third example,\'a0many companies have huge databases of customer information given this data.\'a0Can you automatically group your customers,\'a0into different market segments so that you can more efficiently serve your customers.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 Concretely the deep learning dot AI team did some research to better understand\'a0the deep learning dot AI community.\'a0And why different individuals take these classes,\'a0subscribed to the batch weekly newsletter, or attend our AI events.\'a0Let's visualize the deep learning dot AI community,\'a0as this collection of people running clustering.\'a0That is market segmentation found a few distinct groups of individuals,\'a0one group's primary motivation is seeking knowledge to grow their skills.\'a0Perhaps this is you, and so that's great,\'a0a second group's primary motivation is looking for a way to develop their career.\'a0Maybe you want to get a promotion or a new job, or\'a0make some career progression if this describes you, that's great too.\'a0And yet another group wants to stay updated on how AI impacts their\'a0field of work, perhaps this is you, that's great too.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 This is a clustering that our team used to try to better serve our community\'a0as we're trying to figure out.\'a0Whether the major categories of learners in the deeper and community, So\'a0if any of these is your top motivation for learning, that's great.\'a0And I hope I'll be able to help you on your journey, or in case this is you, and\'a0you want something totally different than the other three categories.\'a0That's fine too, and I want you to know, I love you all the same, so\'a0to summarize a clustering algorithm.\'a0Which is a type of unsupervised learning algorithm,\'a0takes data without labels and tries to automatically group them into clusters.\'a0And so maybe the next time you see or think of a panda,\'a0maybe you think of clustering as well.\'a0And besides clustering, there are other types of unsupervised learning as well.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 Let's go on to the next video,\'a0to take a look at some other types of unsupervised learning algorithms.\
+\
+In the last video, you saw\'a0what is unsupervised learning,\'a0\cb4 and one type of unsupervised learning called clustering.\'a0\cb3 Let's give a slightly more formal definition\'a0of unsupervised learning\'a0and take a quick look at\'a0some other types of\'a0unsupervised learning other than clustering.\'a0Whereas in supervised learning,\'a0the data comes with both inputs x and\'a0input labels y, in unsupervised learning,\'a0the data comes only with inputs\'a0x but not output labels y,\'a0and the algorithm has to find\'a0some structure or some pattern\'a0or something interesting in the data.\'a0We're seeing just one example of\'a0unsupervised learning called a clustering algorithm,\'a0which groups similar data points together.\'a0In this specialization, you'll learn about\'a0clustering as well as\'a0two other types of unsupervised learning.\'a0One is called anomaly detection,\'a0which is used to detect unusual events.\'a0This turns out to be really important for\'a0fraud detection in the financial system,\'a0where unusual events, unusual transactions could\'a0be signs of fraud and for many other applications.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 You also learn about dimensionality reduction.\'a0This lets you take\'a0a big data-set and almost magically compress it\'a0to a much smaller data-set while\'a0losing as little information as possible.\'a0In case anomaly detection and\'a0dimensionality reduction don't seem\'a0to make too much sense to you yet.\'a0Don't worry about it. We'll get to\'a0this later in the specialization.\'a0Now, I'd like to ask you\'a0another question to help you check your understanding,\'a0and no pressure, if you don't get it\'a0right on the first try, is totally fine.\'a0Please select any of the following\'a0that you think are examples of unsupervised learning.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 Two are unsupervised examples and two\'a0are supervised learning examples. Please take a look.\'a0Maybe you remember the spam filtering problem.\'a0If you have labeled data you now\'a0label as spam or non-spam e-mail,\'a0you can treat this as a supervised learning problem.\'a0The second example, the news story example.\'a0That's exactly the Google News and\'a0tangible example that you saw in the last video.\'a0You can approach that using\'a0a clustering algorithm to group news articles together.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 That we'll use unsupervised learning.\'a0The market segmentation example\'a0that I talked about a little bit earlier.\'a0You can do that as\'a0an unsupervised learning problem as well because you can\'a0give your algorithm some data and ask it\'a0to discover market segments automatically.\'a0The final example on diagnosing diabetes.\'a0Well, actually that's a lot like\'a0our breast cancer example\'a0from the supervised learning videos.\'a0Only instead of benign or malignant tumors,\'a0we instead have diabetes or not diabetes.\'a0You can approach this as a supervised learning problem,\'a0just like we did for the\'a0breast tumor classification problem.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 Even though in the last video,\'a0we've talked mainly about clustering, in later videos,\'a0in this specialization, we'll dive much more deeply into\'a0anomaly detection and dimensionality reduction as well.\'a0That's unsupervised learning.\'a0Before we wrap up this section,\'a0I want to share with you something\'a0that I find really exciting,\'a0and useful, which is the use of\'a0Jupyter Notebooks in machine learning.\'a0Let's take a look at that in the next video.\cb1 \
+\
+\
+{{\NeXTGraphic Pasted Graphic.png \width38120 \height18340 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\
+
+\f3\b Figure: Difference between supervised and unsupervised learning\
+
+\f2\b0 \
+
+\f3\b\fs48 Linear regression\
+\
+
+\f2\b0\fs32 \cb3 In this video, we'll look at what\'a0the overall process of supervised learning is like.\'a0Specifically, you see the first model of\'a0this course, Linear Regression Model.\'a0That just means fitting a straight line to your data.\'a0It's probably the most\'a0widely used learning algorithm in the world today.\'a0As you get familiar with linear regression,\'a0many of the concepts you see here will also apply to\'a0other machine learning models that\'a0you'll see later in this specialization.\'a0Let's start with a problem that you can\'a0address using linear regression.\'a0Say you want to predict the price of\'a0a house based on the size of the house.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 This is the example we've seen earlier this week.\'a0We're going to use a dataset on\'a0house sizes and prices from Portland,\'a0a city in the United States.\'a0Here we have a graph where\'a0the horizontal axis is\'a0the size of the house in square feet,\'a0and the vertical axis is\'a0the price of a house in thousands of dollars.\'a0Let's go ahead and plot\'a0the data points for various houses in the dataset.\'a0Here each data point,\'a0each of these little crosses is a house with\'a0the size and the price that\'a0it most recently was sold for.\'a0Now, let's say you're a real estate agent in\'a0Portland and you're helping a client to sell her house.\'a0She is asking you, how\'a0much do you think I can get for this house?\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 This dataset might help you\'a0estimate the price she could get for it.\'a0You start by measuring the size of the house,\'a0and it turns out that the house is 1250 square feet.\'a0How much do you think this house could sell for?\'a0One thing you could do this,\'a0you can build a linear\'a0regression model from this dataset.\'a0Your model will fit a straight line to the data,\'a0which might look like this.\'a0Based on this straight line fit to the data,\'a0you can see that the house is 1250 square feet,\'a0it will intersect the best fit line over here,\'a0and if you trace that to the vertical axis on the left,\'a0you can see the price is maybe around\'a0here, say about $220,000.\'a0This is an example of what's\'a0called a supervised learning model.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 We call this supervised learning\'a0because you are first training a model by giving\'a0a data that has right answers because you get\'a0the model examples of\'a0houses with both the size of the house,\'a0as well as the price that\'a0the model should predict for each house.\'a0Well, here are the prices, that is,\'a0the right answers are given\'a0for every house in the dataset.\'a0This linear regression model is\'a0a particular type of supervised learning model.\'a0It's called regression model because it predicts numbers\'a0as the output like prices in dollars.\'a0Any supervised learning model that predicts\'a0a number such as 220,000 or\'a01.5 or negative 33.2\'a0is addressing what's called a regression problem.\'a0Linear regression is one example of a regression model.\'a0But there are other models for\'a0addressing regression problems too.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 We'll see some of those later in\'a0Course 2 of this specialization.\'a0Just to remind you,\'a0in contrast with the regression model,\'a0the other most common type of\'a0supervised learning model is\'a0called a classification model.\'a0Classification model predicts\'a0categories or discrete categories,\'a0such as predicting if a picture is of a cat,\'a0meow or a dog,\'a0woof, or if given medical record,\'a0it has to predict if a patient has a particular disease.\'a0You'll see more about\'a0classification models later in this course as well.\'a0As a reminder about\'a0the difference between classification and regression,\'a0in classification, there are\'a0only a small number of possible outputs.\'a0If your model is recognizing cats versus dogs,\'a0that's two possible outputs.\'a0Or maybe you're trying to recognize any of\'a010 possible medical conditions in a patient,\'a0so there's a discrete,\'a0finite set of possible outputs.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 We call it classification\'a0problem, whereas in regression,\'a0there are infinitely many possible numbers\'a0that the model could output.\'a0In addition to visualizing\'a0this data as a plot here on the left,\'a0there's one other way of looking at\'a0the data that would be useful,\'a0and that's a data table here on the right.\'a0The data comprises a set of inputs.\'a0This would be the size of the house,\'a0which is this column here.\'a0It also has outputs.\'a0You're trying to predict the price,\'a0which is this column here.\'a0Notice that the horizontal and vertical axes\'a0correspond to these two columns,\'a0the size and the price.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 If you have, say, 47 rows in this data table,\'a0then there are 47 of\'a0these little crosses on the plot of the left,\'a0each cross corresponding to one row of the table.\'a0For example, the first row\'a0of the table is a house with size,\'a02,104 square feet,\'a0so that's around here,\'a0and this house is sold for $400,000 which is around here.\'a0This first row of the table is plotted\'a0as this data point over here.\'a0Now, let's look at\'a0some notation for describing the data.\'a0This is notation that you find\'a0useful throughout your journey in machine learning.\'a0As you increasingly get\'a0familiar with machine learning terminology,\'a0this would be terminology they can\'a0use to talk about machine learning concepts\'a0with others as well since a lot of\'a0this is quite standard across AI,\'a0you'll be seeing this notation\'a0multiple times in this specialization,\'a0so it's okay if you don't\'a0remember everything for assign through,\'a0it will naturally become more familiar overtime.\'a0The dataset that you just saw and that is\'a0used to train the model is called a training set.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 Note that your client's house is not in\'a0this dataset because it's not yet sold,\'a0so no one knows what the price is.\'a0To predict the price of your client's house,\'a0you first train your model to learn from\'a0the training set and that model can then\'a0predict your client's houses price.\'a0In Machine Learning, the standard notation to denote\'a0the input here is lowercase x,\'a0and we call this the input variable,\'a0is also called a feature or an input feature.\'a0For example, for the first house in your training set,\'a0x is the size of the house,\'a0so x equals 2,104.\'a0The standard notation to denote\'a0the output variable which you're trying to predict,\'a0which is also sometimes called the target\'a0variable, is lowercase y.\'a0Here, y is the price of the house,\'a0and for the first training example,\'a0this is equal to 400,\'a0so y equals 400.\'a0The dataset has one row for\'a0each house and in this training set,\'a0there are 47 rows with\'a0each row representing a different training example.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 We're going to use lowercase m to\'a0refer it to the total number of training examples,\'a0and so here m is equal to 47.\'a0To indicate the single training example,\'a0we're going to use the notation parentheses x, y.\'a0For the first training example, (x, y),\'a0this pair of numbers is (2104, 400).\'a0Now we have a lot of different training examples.\'a0We have 47 of them in fact.\'a0To refer to a specific training example,\'a0this will correspond to\'a0a specific row in this table on the left,\'a0I'm going to use the notation\'a0x superscript in parenthesis,\'a0i, y superscript in parentheses i.\'a0The superscript tells us that\'a0this is the ith training example,\'a0such as the first,\'a0second, or third up to the 47th training example.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 I here, refers to a specific row in the table.\'a0For instance, here is the first example,\'a0when i equals 1 in the training set,\'a0and so x superscript 1 is\'a0equal to 2,104 and y superscript\'a01 is equal to\'a0400 and let's add this superscript 1 here as well.\'a0\cb4 Just to note, this superscript i\'a0\cb3 in parentheses is not exponentiation.\'a0When I write this,\'a0this is not x squared.\'a0This is not x to the power 2.\'a0It just refers to the second training example.\'a0This i, is just an index into\'a0the training set and refers to row i in the table.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 In this video, you saw what a training set is like,\'a0as well as a standard notation\'a0for describing this training set.\'a0In the next video,\'a0let's look at what rotate to take\'a0this training set that you just saw and feed it\'a0to learning algorithm so that\'a0the algorithm can learn from this data.\'a0Let's see that in the next video.\cb1 \
+
+\f3\b\fs48 \
+
+\f2\b0\fs32 \cb3 Let's look in this video at\'a0the process of how supervised learning works.\'a0Supervised learning algorithm will input a dataset and\'a0then what exactly does it do and what does it output?\'a0\cb4 Let's find out in this video.\'a0\cb3 Recall that a training set in\'a0supervised learning includes both the input features,\'a0such as the size of the house and\'a0also the output targets,\'a0such as the price of the house.\'a0The output targets are\'a0the right answers to the model we'll learn from.\'a0To train the model,\'a0you feed the training set,\'a0both the input features and\'a0the output targets to your learning algorithm.\'a0Then your supervised learning algorithm\'a0will produce some function.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 We'll write this function as lowercase f,\'a0where f stands for function.\'a0Historically, this function used to\'a0be called a hypothesis,\'a0but I'm just going to call it a function f in this class.\'a0The job with f is to take a new input\'a0x and output and estimate or a prediction,\'a0which I'm going to call y-hat,\'a0and it's written like\'a0the variable y with this little hat symbol on top.\'a0In machine learning, the convention is that\'a0y-hat is the estimate or the prediction for y.\'a0The function f is called the model.\'a0X is called the input or the input feature,\'a0and the output of the model is the prediction, y-hat.\'a0The model's prediction is the estimated value of y.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 When the symbol is just the letter y,\'a0then that refers to the target,\'a0which is the actual true value in the training set.\'a0In contrast, y-hat is an estimate.\'a0It may or may not be the actual true value.\'a0Well, if you're helping your client\'a0to sell the house, well,\'a0the true price of the house\'a0is unknown until they sell it.\'a0Your model f, given the size,\'a0outputs the price which is the estimator,\'a0that is the prediction of what the true price will be.\'a0Now, when we design a learning algorithm,\'a0a key question is,\'a0how are we going to represent the function f?\'a0Or in other words,\'a0what is the math formula we're going to use to compute f?\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 For now, let's stick with f being a straight line.\'a0You're function can be written as f_w,\'a0b of x equals,\'a0I'm going to use w times x plus\'a0b. I'll define w and b soon.\'a0But for now, just know that w and b are numbers,\'a0and the values chosen for w and b will determine\'a0the prediction y-hat based on the input feature x.\'a0This f_w b of x\'a0means f is a function that takes x as input,\'a0and depending on the values of w and b,\'a0f will output some value of a prediction y-hat.\'a0As an alternative to writing this,\'a0f_w, b of x,\'a0I'll sometimes just write f of x without\'a0explicitly including w and b into subscript.\'a0Is just a simpler notation that means\'a0exactly the same thing as f_w b of x.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 Let's plot the training set on\'a0the graph where the input feature x is on\'a0the horizontal axis and\'a0the output target y is on the vertical axis.\'a0Remember, the algorithm learns from this data and\'a0generates the best-fit line like maybe this one here.\'a0This straight line is the linear function\'a0f_w b of x equals w times x plus b.\'a0Or more simply, we can drop w and b and just\'a0write f of x equals wx plus b.\'a0Here's what this function is doing,\'a0it's making predictions for the value of\'a0y using a streamline function of x.\'a0You may ask, why are we choosing a linear function,\'a0where linear function is just a fancy term for\'a0a straight line instead of\'a0some non-linear function like a curve or a parabola?\'a0Well, sometimes you want to fit\'a0more complex non-linear functions as well,\'a0like a curve like this.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 But since this linear function is\'a0relatively simple and easy to work with,\'a0let's use a line as\'a0a foundation that will eventually help\'a0you to get to more complex models that are non-linear.\'a0This particular model has a name,\'a0it's called linear regression.\'a0More specifically, this is\'a0linear regression with one variable,\'a0where the phrase one variable means that there's\'a0a single input variable or feature x,\'a0namely the size of the house.\'a0Another name for a linear model with\'a0one input variable is univariate linear regression,\'a0where uni means one in Latin,\'a0and where variate means variable.\'a0Univariate is just a fancy way of saying one variable.\'a0In a later video,\'a0you'll also see a variation of regression where you'll\'a0want to make a prediction based not\'a0just on the size of a house,\'a0but on a bunch of other things that you may know\'a0about the house such as number of\'a0bedrooms and other features.\'a0By the way, when you're done with this video,\'a0there is another optional lab.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 You don't need to write any code.\'a0Just review it, run the code and see what it does.\'a0That will show you how to define in\'a0Python a straight line function.\'a0The lab will let you choose the values of\'a0w and b to try to fit the training data.\'a0You don't have to do the lab if you don't want to,\'a0but I hope you play with it when you're\'a0done watching this video.\'a0That's linear regression.\'a0In order for you to make this work,\'a0one of the most important things you have to do\'a0is construct a cost function.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 The idea of a cost function is one of\'a0the most universal and important ideas\'a0in machine learning,\'a0and is used in both linear regression and in\'a0training many of the most\'a0advanced AI models in the world.\'a0Let's go on to the next video and take a look\'a0at how you can construct a cost function.\cb1 \
+
+\f3\b\fs48 \
+{{\NeXTGraphic Pasted Graphic 1.png \width38020 \height18640 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+
+\f2\b0\fs32 \
+\
+
+\f3\b\fs36 Cost Function\
+
+\f2\b0\fs32 \cb3 In order to implement linear regression\'a0the first key step is first to\'a0define something called a cost function.\'a0This is something we'll build in this video,\'a0and the cost function will tell us how well\'a0\cb4 the model is doing so that\'a0\cb3 we can try to get it to do better.\'a0Let's look at what this means.\'a0Recall that you have a training set that contains\'a0input features x and output targets y.\'a0The model you're going to use to fit this training set\'a0is this linear function f_w,\'a0b of x equals to w times x plus b.\'a0To introduce a little bit more terminology the w\'a0and b are called the parameters of the model.\'a0In machine learning parameters of the model are\'a0the variables you can adjust during\'a0training in order to improve the model.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 Sometimes you also hear the parameters w and b\'a0referred to as coefficients or as weights.\'a0Now let's take a look at what\'a0these parameters w and b do.\'a0Depending on the values you've chosen for w and\'a0b you get a different function f of x,\'a0which generates a different line on the graph.\'a0Remember that we can write f of x as\'a0a shorthand for f_w, b of x.\'a0We're going to take a look at some plots\'a0of f of x on a chart.\'a0Maybe you're already familiar\'a0with drawing lines on charts,\'a0but even if this is a review for you,\'a0I hope this will help you build intuition\'a0on how w and b the parameters\'a0determine f. When w is equal to 0 and b is equal to 1.5,\'a0then f looks like this horizontal line.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 In this case, the function f of x is 0 times x\'a0plus 1.5 so f is always a constant value.\'a0It always predicts 1.5 for\'a0the estimated value of y. Y hat is always equal to b\'a0and here b is also called\'a0the y intercept because that's where it\'a0crosses the vertical axis or the y axis on this graph.\'a0As a second example,\'a0if w is 0.5 and b is equal 0,\'a0then f of x is 0.5 times x.\'a0When x is 0,\'a0the prediction is also 0,\'a0and when x is 2,\'a0then the prediction is 0.5 times 2, which is 1.\'a0You get a line that looks like this and notice that\'a0the slope is 0.5 divided by 1.\'a0The value of w gives you the slope\'a0of the line, which is 0.5.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 Finally, if w equals 0.5 and b equals 1,\'a0then f of x is 0.5 times x plus 1 and when x is 0,\'a0then f of x equals b,\'a0which is 1 so the line intersects\'a0the vertical axis at b, the y intercept.\'a0Also when x is 2,\'a0then f of x is 2,\'a0so the line looks like this.\'a0Again, this slope is 0.5 divided by\'a01 so the value of w gives you the slope which is 0.5.\'a0Recall that you have\'a0a training set like the one shown here.\'a0With linear regression,\'a0what you want to do is to choose\'a0values for the parameters w and\'a0b so that the straight line you get from\'a0the function f somehow fits the data well.\'a0Like maybe this line shown here.\'a0When I see that the line fits the data visually,\'a0you can think of this to mean that the line\'a0defined by f is roughly passing\'a0through or somewhere close to the training examples\'a0as compared to other possible lines\'a0that are not as close to these points.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 Just to remind you of some notation,\'a0a training example like this point\'a0here is defined by x superscript i,\'a0y superscript i where y is the target.\'a0For a given input x^i,\'a0the function f also makes a predictive value for\'a0y and a value that it predicts to\'a0y is y hat i shown here.\'a0For our choice of a model f of x^i is w times x^i plus b.\'a0Stated differently, the prediction y hat i\'a0is f of wb of x^i where\'a0for the model we're using f\'a0of x^i is equal to wx^i plus b.\'a0Now the question is how do you find values for\'a0w and b so that the prediction y hat i is\'a0close to the true target y^i for\'a0many or maybe all training examples x^i, y^i.\'a0To answer that question,\'a0let's first take a look at how to\'a0measure how well a line fits the training data.\'a0To do that, we're going to construct a cost function.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 The cost function takes the prediction y hat and compares\'a0it to the target y by taking y hat minus y.\'a0This difference is called the error,\'a0we're measuring how far off to\'a0prediction is from the target.\'a0Next, let's computes the square of this error.\'a0Also, we're going to want to compute this term for\'a0different training examples i in the training set.\'a0When measuring the error,\'a0for example i,\'a0we'll compute this squared error term.\'a0Finally, we want to measure\'a0the error across the entire training set.\'a0In particular, let's sum up the squared errors like this.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 We'll sum from i equals 1,2,\'a03 all the way up to\'a0m and remember that m is the number of training examples,\'a0which is 47 for this dataset.\'a0Notice that if we have more training examples m is\'a0larger and your cost function\'a0will calculate a bigger number.\'a0This is summing over more examples.\'a0To build a cost function that\'a0doesn't automatically get bigger\'a0as the training set size gets larger by convention,\'a0we will compute the average squared error instead of\'a0the total squared error and we do\'a0that by dividing by m like this.\'a0We're nearly there. Just one last thing.\'a0By convention,\'a0the cost function that machine learning people use\'a0actually divides by 2 times m. The extra division\'a0by 2 is just meant to make some of\'a0our later calculations look neater,\'a0but the cost function still works whether you\'a0include this division by 2 or not.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 This expression right here is\'a0the cost function and we're going to write\'a0J of wb to refer to the cost function.\'a0This is also called the squared error cost function,\'a0and it's called this because you're taking\'a0the square of these error terms.\'a0In machine learning different people\'a0will use different cost functions\'a0for different applications,\'a0but the squared error cost function is by far the most\'a0commonly used one for\'a0linear regression and for that matter,\'a0for all regression problems where it\'a0seems to give good results for many applications.\'a0Just as a reminder, the prediction y hat\'a0is equal to the outputs of the model f at x.\'a0We can rewrite the cost function J of\'a0wb as 1 over 2m times\'a0the sum from i equals 1 to m of f\'a0of x^i minus y^i the quantity squared.\'a0Eventually we're going to want to find values of\'a0w and b that make the cost function small.\'a0But before going there,\'a0let's first gain more intuition about what\'a0J of wb is really computing.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 At this point you might be thinking we've done\'a0a whole lot of math to define the cost function.\'a0But what exactly is it doing?\'a0Let's go on to the next video where we'll step\'a0through one example of what the cost function\'a0is really computing that I hope will\'a0help you build intuition about what it\'a0means if J of wb is large versus if the cost j is small.\'a0Let's go on to the next video.\
+\
+\cb1 {{\NeXTGraphic Pasted Graphic 2.png \width38120 \height18440 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\
+
+\f3\b Figure: Cost Function\
+\
+\
+=====\
+\
+{{\NeXTGraphic Pasted Graphic 3.png \width38100 \height18660 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\
+Figure: Error calculation\
+\
+==========\
+\
+{{\NeXTGraphic Pasted Graphic 4.png \width38280 \height18760 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\
+Figure: Squared error cost function\
+\
+\
+=======\
+\
+
+\fs48 Cost Function Intuition\
+
+\f2\b0\fs32 \cb3 We're seeing the mathematical definition\'a0of the cost function.\'a0Now, let's build some intuition\'a0about what the cost function is really doing.\'a0In this video, we'll walk through one example to see how\'a0\cb4 the cost function can be used to\'a0\cb3 find the best parameters for your model.\'a0I know this video's little bit longer than the others,\'a0but bear with me, I think it'll be worth it.\'a0To recap, here's what we've\'a0seen about the cost function so far.\'a0You want to fit a straight line to the training data,\'a0so you have this model, fw,\'a0b of x is w times x, plus b.\'a0Here, the model's parameters are w, and b.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 Now, depending on the values chosen for these parameters,\'a0you get different straight lines like this.\'a0You want to find values for w,\'a0and b, so that\'a0the straight line fits the training data well.\'a0To measure how well a choice of w,\'a0and b fits the training data,\'a0you have a cost function J.\'a0What the cost function J does is,\'a0it measures the difference\'a0between the model's predictions,\'a0and the actual true values for y.\'a0What you see later,\'a0is that linear regression would\'a0try to find values for w,\'a0and b, then make a J of w be as small as possible.\'a0In math, we write it like this.\'a0We want to minimize,\'a0J as a function of w, and b.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 Now, in order for us to\'a0better visualize the cost function J,\'a0this work of a simplified version\'a0of the linear regression model.\'a0We're going to use the model fw of x,\'a0is w times x.\'a0You can think of this as taking\'a0the original model on the left,\'a0and getting rid of the parameter b,\'a0or setting the parameter b equal to 0.\'a0It just goes away from the equation,\'a0so f is now just w times x.\'a0You now have just one parameter w,\'a0and your cost function J,\'a0looks similar to what it was before.\'a0Taking the difference,\'a0and squaring it,\'a0except now, f is equal to w times xi,\'a0and J is now a function of just\'a0w. The goal becomes a little bit different as well,\'a0because you have just one parameter, w,\'a0not w and b.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 With this simplified model,\'a0the goal is to find the value for w,\'a0that minimizes J of w. To see this visually,\'a0what this means is that if b is set to 0,\'a0then f defines a line that looks like this.\'a0You see that the line passes through the origin here,\'a0because when x is 0,\'a0f of x is 0 too.\'a0Now, using this simplified model,\'a0let's see how the cost function changes as you choose\'a0different values for the parameter w. In particular,\'a0let's look at graphs of the model f of x,\'a0and the cost function J.\'a0I'm going to plot these side-by-side,\'a0and you'll be able to see how the two are related.\'a0First, notice that for f subscript w,\'a0when the parameter w is fixed,\'a0that is, is always a constant value,\'a0then fw is only a function of x,\'a0which means that the estimated value of y depends\'a0on the value of the input x.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 In contrast, looking to the right,\'a0the cost function J,\'a0is a function of w,\'a0where w controls the slope of the line defined by\'a0f w. The cost defined by J,\'a0depends on a parameter,\'a0in this case, the parameter w. Let's go ahead,\'a0and plot these functions,\'a0fw of x, and J of w\'a0side-by-side so you can see how they are related.\'a0We'll start with the model,\'a0that is the function fw of x on the left.\'a0Here are the input feature x is on the horizontal axis,\'a0and the output value y is on the vertical axis.\'a0Here's the plots of three points representing\'a0the training set at positions 1,\'a01, 2, 2, and 3,3.\'a0Let's pick a value for w. Say w is 1.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 For this choice of w,\'a0the function fw,\'a0they'll say this straight line with a slope of 1.\'a0Now, what you can do next is calculate\'a0the cost J when w equals 1.\'a0You may recall that the cost function\'a0is defined as follows,\'a0is the squared error cost function.\'a0If you substitute fw(X^i) with w times X^i,\'a0the cost function looks like this.\'a0Where this expression is now w times X^i minus Y^i.\'a0For this value of w,\'a0it turns out that the error term\'a0inside the cost function,\'a0this w times X^i minus\'a0Y^i is equal to 0 for each of the three data points.\'a0Because for this data-set,\'a0when x is 1, then y is 1.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 When w is also 1,\'a0then f(x) equals 1,\'a0so f(x) equals y for this first training example,\'a0and the difference is 0.\'a0Plugging this into the cost function J,\'a0you get 0 squared.\'a0Similarly, when x is 2,\'a0then y is 2,\'a0and f(x) is also 2.\'a0Again, f(x) equals y,\'a0for the second training example.\'a0In the cost function,\'a0the squared error for\'a0the second example is also 0 squared.\'a0Finally, when x is 3,\'a0then y is 3 and f(3) is also 3.\'a0In a cost function\'a0the third squared error term is also 0 squared.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 For all three examples in this training set,\'a0f(X^i) equals Y^i for each training example i,\'a0so f(X^i) minus Y^i is 0.\'a0For this particular data-set,\'a0when w is 1,\'a0then the cost J is equal to 0.\'a0Now, what you can do on\'a0the right is plot the cost function J.\'a0Notice that because the cost function\'a0is a function of the parameter w,\'a0the horizontal axis is now labeled w and not x,\'a0and the vertical axis is now J and not y.\'a0You have J(1) equals to 0.\'a0In other words, when w equals 1,\'a0J(w) is 0,\'a0so let me go ahead and plot that.\'a0Now, let's look at how F and J change for\'a0different values of w. W can take on a range of values,\'a0so w can take on negative values,\'a0w can be 0, and it can take on positive values too.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 What if w is equal to 0.5 instead of 1,\'a0what would these graphs look like then?\'a0Let's go ahead and plot that.\'a0Let's set w to be equal to 0.5,\'a0and in this case,\'a0the function f(x) now looks like this,\'a0is a line with a slope equal to 0.5.\'a0Let's also compute the cost J,\'a0when w is 0.5.\'a0Recall that the cost function is measuring\'a0the squared error or\'a0difference between the estimator value,\'a0that is y hat I,\'a0which is F(X^i),\'a0and the true value,\'a0that is Y^i for each example i. Visually you can see that\'a0the error or difference is equal to the height\'a0of this vertical line here when x is equal to 1.\'a0Because this lower line is\'a0the gap between the actual value\'a0of y and the value that the function f predicted,\'a0which is a bit further down here.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 For this first example,\'a0when x is 1, f(x) is 0.5.\'a0The squared error on the first example is\'a00.5 minus 1 squared.\'a0Remember the cost function,\'a0we'll sum over all the\'a0training examples in the training set.\'a0Let's go on to the second training example.\'a0When x is 2,\'a0the model is predicting f(x) is\'a01 and the actual value of y is 2.\'a0The error for the second example is equal to\'a0the height of this little line segment here,\'a0and the squared error is\'a0the square of the length of this line segment,\'a0so you get 1 minus 2 squared.\'a0Let's do the third example.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 Repeating this process, the error here,\'a0also shown by this line segment,\'a0is 1.5 minus 3 squared.\'a0Next, we sum up all of these terms,\'a0which turns out to be equal to 3.5.\'a0Then we multiply this term by 1 over 2m,\'a0where m is the number of training examples.\'a0Since there are three training examples m equals 3,\'a0so this is equal to 1 over 2 times 3,\'a0where this m here is 3.\'a0If we work out the math,\'a0this turns out to be 3.5 divided by 6.\'a0The cost J is about 0.58.\'a0Let's go ahead and plot that over there on the right.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 Now, let's try one more value for\'a0w. How about if w equals 0?\'a0What do the graphs for f and J\'a0look like when w is equal to 0?\'a0It turns out that if w is equal to 0,\'a0then f of x is\'a0just this horizontal line that is exactly on the x-axis.\'a0The error for each example is\'a0a line that goes from each point down\'a0to the horizontal line that represents f of x equals 0.\'a0The cost J when w equals\'a00 is 1 over 2m times the quantity,\'a01^2 plus 2^2 plus 3^2,\'a0and that's equal to 1 over 6 times 14,\'a0which is about 2.33.\'a0Let's plot this point where w is 0 and J\'a0of 0 is 2.33 over here.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 You can keep doing this for other values of\'a0w. Since w can be any number,\'a0it can also be a negative value.\'a0If w is negative 0.5,\'a0then the line f is a downward-sloping line like this.\'a0It turns out that when w is negative\'a00.5 then you end up with an even higher cost,\'a0around 5.25, which is this point up here.\'a0You can continue computing the cost function for\'a0different values of w and so on and plot these.\'a0It turns out that by computing a range of values,\'a0you can slowly trace out what the cost function J\'a0looks like and that's what J is.\'a0To recap, each value of\'a0parameter w corresponds to different straight line fit,\'a0f of x, on the graph to the left.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 For the given training set,\'a0that choice for a value of w corresponds to\'a0a single point on\'a0the graph on the right because for each value of w,\'a0you can calculate the cost J of w. For example,\'a0when w equals 1,\'a0this corresponds to this straight line fit through\'a0the data and it also\'a0corresponds to this point on the graph of J,\'a0where w equals 1 and the cost J of 1 equals 0.\'a0Whereas when w equals 0.5,\'a0this gives you this line which has a smaller slope.\'a0This line in combination with\'a0the training set corresponds to\'a0this point on the cost function graph at w equals 0.5.\'a0For each value of w you wind up with\'a0a different line and its corresponding costs,\'a0J of w,\'a0and you can use these points\'a0to trace out this plot on the right.\'a0Given this, how can you choose the value of\'a0w that results in the function f,\'a0fitting the data well?\'a0Well, as you can imagine,\'a0choosing a value of w that causes J of w\'a0to be as small as possible seems like a good bet.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 J is the cost function that\'a0measures how big the squared errors are,\'a0so choosing w that minimizes these squared errors,\'a0makes them as small as possible,\'a0will give us a good model.\'a0In this example, if you were to\'a0choose the value of w that results\'a0in the smallest possible value of J of\'a0w you'd end up picking w equals 1.\'a0As you can see, that's actually a pretty good choice.\'a0This results in the line that fits\'a0the training data very well.\'a0That's how in linear regression you use the cost function\'a0to find the value of w that minimizes J.\'a0In the more general case where we had\'a0parameters w and b rather than just w,\'a0you find the values of w and b that minimize J.\'a0To summarize, you saw plots of both\'a0f and J and worked through how the two are related.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 As you vary w or vary w and b you end up\'a0with different straight lines and when\'a0that straight line passes across the data,\'a0the cause J is small.\'a0The goal of linear regression is to find\'a0the parameters w or w and\'a0b that results in\'a0the smallest possible value for the cost function J.\'a0Now in this video,\'a0we worked through our example with\'a0a simplified problem using only w. In the next video,\'a0let's visualize what the cost function looks like for\'a0the full version of linear regression using both w and b.\'a0You see some cool 3D plots.\'a0Let's go to the next video.\cb1 \
+
+\f3\b \
+
+\f2\b0 {{\NeXTGraphic Pasted Graphic 5.png \width38020 \height18800 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\
+
+\f3\b\fs48 Gradient Descent\
+\pard\pardeftab720\partightenfactor0
+
+\f2\b0\fs32 \cf2 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 Welcome back. In the last video,\'a0we saw visualizations of\'a0the cost function j and how you can try\'a0different choices of the parameters w and\'a0b and see what cost value they get you.\'a0It would be nice if we had\'a0a more systematic way to find the values of w and b,\'a0that results in the smallest possible cost,\'a0j of w, b.\'a0It turns out there's an algorithm called\'a0gradient descent that you can use to do that.\'a0Gradient descent is used\'a0all over the place in machine learning,\'a0not just for linear regression,\'a0but for training for example some of\'a0the most advanced neural network models,\'a0also called deep learning models.\'a0Deep learning models are something you\'a0learned about in the second course.\'a0Learning these two of gradient descent will set you\'a0up with one of the most\'a0important building blocks in machine learning.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 Here's an overview of what\'a0we'll do with gradient descent.\'a0You have the cost function j of w,\'a0b right here that you want to minimize.\'a0In the example we've seen so far,\'a0this is a cost function for linear regression,\'a0but it turns out that gradient descent\'a0is an algorithm that you\'a0can use to try to minimize any function,\'a0not just a cost function for linear regression.\'a0Just to make this discussion on\'a0gradient descent more general,\'a0it turns out that gradient descent\'a0applies to more general functions,\'a0including other cost functions that work\'a0with models that have more than two parameters.\'a0For instance, if you have a cost function\'a0J as a function of w_1,\'a0w_2 up to w_n and b,\'a0your objective is to minimize j\'a0over the parameters w_1 to w_n and b.\'a0\cb4 In other words, you want to pick values\'a0\cb3 for w_1 through w_n and b,\'a0that gives you the smallest possible value of j.\'a0It turns out that gradient descent\'a0is an algorithm that you can apply\'a0to try to minimize this cost function j as well.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 What you're going to do is just to start off\'a0with some initial guesses for w and b.\'a0In linear regression, it won't matter too\'a0much what the initial value are,\'a0so a common choice is to set them both to 0.\'a0For example, you can set w to 0\'a0and b to 0 as the initial guess.\'a0With the gradient descent algorithm,\'a0what you're going to do is,\'a0you'll keep on changing the parameters w and b a bit\'a0every time to try to reduce the cost j of w,\'a0b until hopefully j settles at or near a minimum.\'a0One thing I should note is that for some functions\'a0j that may not be a bow shape or a hammock shape,\'a0it is possible for there to be\'a0more than one possible minimum.\'a0Let's take a look at an example of\'a0a more complex surface plot j\'a0to see what gradient is doing.\'a0This function is not a squared error cost function.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 For linear regression with\'a0the squared error cost function,\'a0you always end up with a bow shape or a hammock shape.\'a0But this is a type of cost function you\'a0might get if you're training a neural network model.\'a0Notice the axes, that is w and b on the bottom axis.\'a0For different values of w and b,\'a0you get different points on this surface,\'a0j of w, b,\'a0where the height of the surface at\'a0some point is the value of the cost function.\'a0Now, let's imagine that\'a0this surface plot is actually a view of\'a0a slightly hilly outdoor park or\'a0a golf course where the high points are\'a0hills and the low points are valleys like so.\'a0I'd like you to imagine if you will,\'a0that you are physically standing\'a0at this point on the hill.\'a0If it helps you to relax,\'a0imagine that there's lots of\'a0really nice green grass and\'a0butterflies and flowers is a really nice hill.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 Your goal is to start up here and get\'a0to the bottom of one of\'a0these valleys as efficiently as possible.\'a0What the gradient descent algorithm does is,\'a0you're going to spin around 360 degrees\'a0and look around and ask yourself,\'a0if I were to take\'a0a tiny little baby step in one direction,\'a0and I want to go downhill as quickly\'a0as possible to or one of these valleys.\'a0What direction do I choose to take that baby step?\'a0Well, if you want to walk down\'a0this hill as efficiently as possible,\'a0it turns out that if you're standing\'a0at this point in the hill and you look around,\'a0you will notice that the best direction to take\'a0your next step downhill is roughly that direction.\'a0Mathematically, this is\'a0the direction of steepest descent.\'a0It means that when you take a tiny baby little step,\'a0this takes you downhill faster than\'a0a tiny little baby step you could\'a0have taken in any other direction.\'a0After taking this first step,\'a0you're now at this point on the hill over here.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 Now let's repeat the process.\'a0Standing at this new point,\'a0you're going to again spin\'a0around 360 degrees and ask yourself,\'a0in what direction will I take\'a0the next little baby step in order to move downhill?\'a0If you do that and take another step,\'a0you end up moving a bit in\'a0that direction and you can keep going.\'a0From this new point,\'a0you can again look around and decide\'a0what direction would take you downhill most quickly.\'a0Take another step, another step, and so on,\'a0until you find yourself at the bottom of this valley,\'a0at this local minimum, right here.\'a0What you just did was go through\'a0multiple steps of gradient descent.\'a0It turns out, gradient descent\'a0has an interesting property.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 Remember that you can choose a starting point at\'a0the surface by choosing\'a0starting values for the parameters w and b.\'a0When you perform gradient descent a moment ago,\'a0you had started at this point over here.\'a0Now, imagine if you try gradient descent again,\'a0but this time you choose\'a0a different starting point by choosing\'a0parameters that place your starting point\'a0just a couple of steps to the right over here.\'a0If you then repeat the gradient descent process,\'a0which means you look around,\'a0take a little step in the direction of\'a0steepest ascent so you end up here.\'a0Then you again look around,\'a0take another step, and so on.\'a0If you were to run gradient descent this second time,\'a0starting just a couple steps in\'a0the right of where we did it the first time,\'a0then you end up in a totally different valley.\'a0This different minimum over here on the right.\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf5 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \strokec2 The bottoms of both the first and\'a0the second valleys are called local minima.\'a0Because if you start going down the first valley,\'a0gradient descent won't lead you to the second valley,\'a0and the same is true if you\'a0started going down the second valley,\'a0you stay in that second minimum and\'a0not find your way into the first local minimum.\'a0This is an interesting property\'a0of the gradient descent algorithm,\'a0and you see more about this later.\'a0In this video, you saw how\'a0gradient descent helps you go downhill.\'a0In the next video,\'a0let's look at the mathematical expressions that you\'a0can implement to make gradient descent work.\'a0Let's go on to the next video.\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \
+}

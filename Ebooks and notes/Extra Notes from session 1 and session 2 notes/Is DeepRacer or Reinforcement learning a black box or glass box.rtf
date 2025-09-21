@@ -1,0 +1,63 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww38200\viewh20480\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b\fs36 \cf0 Is DeepRacer or Reinforcement learning or CNN or ChatGPT a black box or glass box?\
+
+\f1\b0 \uc0\u55357 \u56589  CNN (Convolutional Neural Networks)\
+	\'95	A CNN is often called a black box because:\
+	\'95	It has millions of parameters (weights, filters, activations).\
+	\'95	It learns hierarchical representations (edges \uc0\u8594  textures \u8594  shapes \u8594  objects) that are hard for humans to directly interpret.\
+	\'95	However, compared to something like ChatGPT, CNNs are more \'93glass-box-like\'94 in the sense that:\
+	\'95	We know the architecture (convolutions, pooling, fully connected layers).\
+	\'95	We can visualize feature maps (see what filters are detecting).\
+	\'95	Techniques like Grad-CAM, saliency maps, activation maximization let us peek into why the CNN made a certain prediction.\
+\
+So: CNNs are \'93black box-ish,\'94 but partially interpretable with the right tools.\
+\
+\uc0\u55358 \u56598  LLMs (like ChatGPT)\
+	\'95	Large language models are much closer to black boxes:\
+	\'95	They have billions of parameters, and the intermediate representations are not human-readable.\
+	\'95	Interpretability techniques (attention visualization, probing tasks) exist, but it\'92s harder to tie activations to human-understandable reasoning.\
+	\'95	Their outputs are influenced by training data in ways that are opaque.\
+\
+So compared to CNNs, ChatGPT is a deeper black box \'97 you know the architecture (transformers), but it\'92s harder to interpret why it generated a specific sequence of text.\
+\
+\uc0\u11835 \
+\
+\uc0\u9989  Summary:\
+	\'95	CNN \uc0\u8594  Semi-black box (glass box with some fog). You can peek into layers and see what\'92s happening.\
+	\'95	ChatGPT/LLMs \uc0\u8594  Black box (you know the structure but not the internal reasoning trace).\
+\
+\uc0\u9881 \u65039  What DeepRacer really is\
+	\'95	It\'92s reinforcement learning (RL) in a simulated environment (a car learns to drive around a track).\
+	\'95	The RL model is typically a neural network (often with CNN layers for vision + fully connected layers for control).\
+	\'95	The car improves by trial and error, guided by a reward function you define.\
+\
+\uc0\u11835 \
+\
+\uc0\u55357 \u56589  Interpretability\
+	\'95	Glass-box aspects:\
+	\'95	You (the user) explicitly design the reward function \uc0\u8594  you know what the agent is optimizing for.\
+	\'95	You can inspect training metrics (reward curves, completion percentage, lap times).\
+	\'95	You know the network architecture (policy/value networks, hyperparameters).\
+	\'95	Black-box aspects:\
+	\'95	The learned policy (weights inside the neural net) is not human-readable.\
+	\'95	It\'92s hard to explain why the car turned left at a specific frame other than \'93the policy learned it gives higher expected reward.\'94\
+	\'95	Even if you watch the camera input and actions, the link between pixels \uc0\u8594  action is not fully transparent.\
+\
+\uc0\u11835 \
+\
+\uc0\u9989  So where does it sit?\
+	\'95	DeepRacer = Semi-black box (closer to CNNs than ChatGPT).\
+	\'95	You can see what it\'92s optimizing (reward function, performance metrics), but not exactly how the policy maps every input to action internally.\
+\
+\uc0\u11835 \
+\
+\uc0\u55357 \u56393  Think of it this way:\
+	\'95	Glass-box: You can read the rules (like a decision tree).\
+	\'95	DeepRacer: You can set the goal (reward) and watch the behavior emerge, but the internal logic is opaque.\
+	\'95	ChatGPT: You don\'92t even set the reward yourself; it was pre-trained on huge datasets \uc0\u8594  deeper black box.}

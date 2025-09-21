@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI & Machine Learning Fundamentals</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow: hidden;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            width: calc(100% - 40px);
+            height: calc(100vh - 120px);
+            display: none;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-radius: 15px;
+            margin: 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: slideIn 0.5s ease-in-out;
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(100px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        h1 {
+            font-size: 2.2em;
+            color: #4a5568;
+            margin-bottom: 15px;
+            text-align: center;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            color: #2d3748;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 1.3em;
+            color: #4a5568;
+            margin-bottom: 10px;
+        }
+
+        p, li {
+            font-size: 1em;
+            line-height: 1.4;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        ul {
+            text-align: left;
+            max-width: 800px;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .quiz-container {
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            max-width: 100%;
+            width: 100%;
+        }
+
+        .quiz-question {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: #2d3748;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .quiz-option {
+            padding: 8px 12px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+        }
+
+        .quiz-option:hover {
+            background: #edf2f7;
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .quiz-option.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .quiz-option.correct {
+            background: #48bb78;
+            color: white;
+            border-color: #48bb78;
+        }
+
+        .quiz-option.incorrect {
+            background: #f56565;
+            color: white;
+            border-color: #f56565;
+        }
+
+        .quiz-feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: none;
+        }
+
+        .quiz-feedback.correct {
+            background: #c6f6d5;
+            color: #22543d;
+            border: 1px solid #48bb78;
+        }
+
+        .quiz-feedback.incorrect {
+            background: #fed7d7;
+            color: #742a2a;
+            border: 1px solid #f56565;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            padding: 12px 25px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .nav-btn:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .nav-btn:disabled {
+            background: #a0aec0;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: #4a5568;
+            z-index: 1000;
+        }
+
+        .interactive-element {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .interactive-element:hover {
+            transform: scale(1.05);
+            border-color: #ff6b6b;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: #667eea;
+            transition: width 0.3s ease;
+            z-index: 1000;
+        }
+
+        .emoji {
+            font-size: 1.2em;
+            margin: 0 5px;
+        }
+
+        .concept-card {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 15px;
+                height: calc(100vh - 100px);
+            }
+            
+            h1 { font-size: 1.8em; }
+            h2 { font-size: 1.5em; }
+            h3 { font-size: 1.1em; }
+            p, li { font-size: 0.9em; }
+            
+            .quiz-question { font-size: 1em; }
+            .quiz-option { font-size: 0.8em; padding: 6px 10px; }
+            
+            .concept-card { margin: 5px; padding: 10px; }
+            .highlight { padding: 10px; margin: 8px 0; }
+            .interactive-element { padding: 10px; margin: 8px 0; }
+            
+            .navigation { bottom: 20px; }
+            .nav-btn { padding: 10px 20px; font-size: 1em; }
+        }
+
+        @media (max-height: 600px) {
+            .slide { 
+                padding: 10px;
+                height: calc(100vh - 80px);
+            }
+            
+            h1 { font-size: 1.6em; margin-bottom: 10px; }
+            h2 { font-size: 1.3em; margin-bottom: 10px; }
+            h3 { font-size: 1em; margin-bottom: 8px; }
+            p, li { font-size: 0.8em; margin-bottom: 5px; }
+            
+            .concept-card { padding: 8px; margin: 4px; }
+            .highlight { padding: 8px; margin: 5px 0; }
+            .quiz-container { padding: 10px; margin: 8px 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="progress-bar" id="progressBar"></div>
+        <div class="slide-counter" id="slideCounter">1 / 15</div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <h1>🤖 AI & Machine Learning Fundamentals</h1>
+            <div class="highlight">
+                <p><strong>Welcome to an Interactive Journey!</strong></p>
+                <p>Discover the fascinating world of Artificial Intelligence and Machine Learning</p>
+            </div>
+            <div class="interactive-element" onclick="showFunFact()">
+                <p><span class="emoji">💡</span> Click here for a fun AI fact! <span class="emoji">💡</span></p>
+            </div>
+            <p style="margin-top: 30px; font-size: 1.1em; color: #666;">
+                Presented by: Pravin | AI Literacy Course
+            </p>
+        </div>
+
+        <!-- Slide 2: The Human Scalability Problem -->
+        <div class="slide">
+            <h2>🧠 The Human Scalability Problem</h2>
+            <div class="concept-card">
+                <h3>Why Machine Learning?</h3>
+                <p><strong>Core Issue:</strong> Humans are NOT scalable!</p>
+            </div>
+            
+            <div class="highlight">
+                <p><span class="emoji">⏰</span> <strong>Limited Time:</strong> Humans have defined lifespans</p>
+                <p><span class="emoji">📚</span> <strong>Learning Curve:</strong> Every new professional starts from scratch</p>
+                <p><span class="emoji">🔄</span> <strong>Cycle Repeats:</strong> Experience is lost when experts retire</p>
+            </div>
+
+            <div class="interactive-element" onclick="showDoctorExample()">
+                <p><span class="emoji">👩‍⚕️</span> Click to explore the Doctor Example <span class="emoji">👨‍⚕️</span></p>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">🤔 Quick Think: Out of 100 early cancer diagnoses, how many mistakes might a new doctor make?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) 2-5 mistakes</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">B) 5-8 mistakes</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">C) 10-15 mistakes</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) 20+ mistakes</div>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Machine Learning Solution -->
+        <div class="slide">
+            <h2>🚀 The Machine Learning Solution</h2>
+            
+            <div class="concept-card">
+                <h3>The Big Idea</h3>
+                <p><strong>Make machines learn ONCE</strong> - and that learning never fades!</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 15px 0;">
+                <div class="highlight">
+                    <h3>🔄 Traditional</h3>
+                    <p>Human learns → retires → cycle repeats</p>
+                </div>
+                <div class="highlight" style="background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);">
+                    <h3>🤖 ML Approach</h3>
+                    <p>Machine learns once → knowledge preserved forever</p>
+                </div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">💭 What's the main advantage of machine learning over human expertise?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) Machines are smarter than humans</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">B) Machine learning is scalable and doesn't fade</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">C) Machines work faster</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) Machines don't make mistakes</div>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Core Components of ML -->
+        <div class="slide">
+            <h2>🔧 Core Components of Machine Learning</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 15px 0;">
+                <div class="concept-card">
+                    <h3>📊 Big Data</h3>
+                    <p>Information to learn from</p>
+                </div>
+                <div class="concept-card">
+                    <h3>🧮 Algorithms</h3>
+                    <p>Find patterns in data</p>
+                </div>
+                <div class="concept-card">
+                    <h3>📈 Monitoring</h3>
+                    <p>Ensure quality results</p>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <h3>🎯 The Goal</h3>
+                <p>Create machines that can <strong>support</strong> or <strong>replace</strong> humans in scalable tasks</p>
+            </div>
+
+            <div class="interactive-element" onclick="showAlgorithmEvolution()">
+                <p><span class="emoji">📈</span> Explore Algorithm Evolution Timeline <span class="emoji">🔬</span></p>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">🎲 Which component is most crucial for machine learning success?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) The fastest computer</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">B) Quality data in large quantities</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">C) The most expensive software</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) The smartest programmer</div>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Supervised Learning -->
+        <div class="slide">
+            <h2>👨‍🏫 Supervised Learning</h2>
+            
+            <div class="concept-card">
+                <h3>What is Supervised Learning?</h3>
+                <p><strong>It's like studying with answer keys!</strong></p>
+            </div>
+
+            <div class="highlight">
+                <p><span class="emoji">📚</span> <strong>Input + Output = Learning</strong></p>
+                <p>We provide both questions AND answers to help machines learn patterns</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 15px 0;">
+                <div class="concept-card">
+                    <h3>🎓 School Analogy</h3>
+                    <p><strong>With answers:</strong> Can improve</p>
+                    <p><strong>Without:</strong> Working blind!</p>
+                </div>
+                <div class="concept-card">
+                    <h3>🏦 Loan Example</h3>
+                    <p><strong>Input:</strong> Age, Income, Credit</p>
+                    <p><strong>Output:</strong> Loan Amount</p>
+                </div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">🤓 In supervised learning, what do we call the "answer" that we provide to the machine?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) Feature</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">B) Input</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">C) Label or Target</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) Algorithm</div>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+        </div>
+
+        <!-- Slide 6: The Learning Process -->
+        <div class="slide">
+            <h2>🔄 The Machine Learning Process</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 15px 0;">
+                <div class="concept-card" style="border-left-color: #48bb78;">
+                    <h3>1️⃣ Training</h3>
+                    <p>Learn from data with answers</p>
+                </div>
+                <div class="concept-card" style="border-left-color: #ed8936;">
+                    <h3>2️⃣ Testing</h3>
+                    <p>Test with new data</p>
+                </div>
+                <div class="concept-card" style="border-left-color: #9f7aea;">
+                    <h3>3️⃣ Deploy</h3>
+                    <p>Use in real world</p>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <h3>🎯 The Magic: Generalization</h3>
+                <p>The machine creates a <strong>function</strong> that captures the relationship between inputs and outputs</p>
+            </div>
+
+            <div class="interactive-element" onclick="showLanguageExample()">
+                <p><span class="emoji">🌍</span> Real Story: Ethiopian Language Translation <span class="emoji">🗣️</span></p>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">🎪 What happens during the "Training Phase"?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) We test the machine's performance</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">B) Machine learns patterns from data with known answers</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">C) We deploy the model for users</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) We collect new data</div>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Why ML Over Rules -->
+        <div class="slide">
+            <h2>⚡ Why Machine Learning vs Rule-Based Systems?</h2>
+            
+            <div class="concept-card">
+                <h3>The Problem with Rules</h3>
+                <p>Rules are <strong>static</strong>, but the world is <strong>dynamic</strong>!</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 15px 0;">
+                <div class="highlight">
+                    <h3>🔄 New Features</h3>
+                    <p>Credit scores, loans appear</p>
+                </div>
+                <div class="highlight">
+                    <h3>📊 Policy Changes</h3>
+                    <p>Age limits: 30→20</p>
+                </div>
+                <div class="highlight">
+                    <h3>📈 Scale Issue</h3>
+                    <p>1K vs 1M data points</p>
+                </div>
+            </div>
+
+            <div class="interactive-element" onclick="showScaleComparison()">
+                <p><span class="emoji">🧮</span> Human vs Machine: The Scale Challenge <span class="emoji">⚡</span></p>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">🏃‍♂️ If a human takes 30 seconds to add 100 numbers, how long does a machine take?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) 30 seconds</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">B) 10 seconds</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">C) 5 seconds</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">D) 1 second (same as adding 2 numbers)</div>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+        </div>
+
+        <!-- Slide 8: The Supervised Learning Challenge -->
+        <div class="slide">
+            <h2>💰 The Supervised Learning Challenge</h2>
+            
+            <div class="concept-card">
+                <h3>The Expensive Truth</h3>
+                <p><strong>Labeling data is EXPENSIVE!</strong> 💸</p>
+            </div>
+
+            <div class="highlight">
+                <h3>💵 Real Costs</h3>
+                <p><strong>$1.25 per unbiased survey response</strong> in the US</p>
+                <p>Imagine labeling millions of images or data points!</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0;">
+                <div class="concept-card" style="border-left-color: #48bb78;">
+                    <h3>✅ What's Free</h3>
+                    <ul>
+                        <li>Features (age, income, etc.)</li>
+                        <li>Sensor data</li>
+                        <li>Device emissions</li>
+                        <li>Images without labels</li>
+                    </ul>
+                </div>
+                <div class="concept-card" style="border-left-color: #f56565;">
+                    <h3>💸 What's Expensive</h3>
+                    <ul>
+                        <li>Labels/Targets</li>
+                        <li>Human annotations</li>
+                        <li>Expert classifications</li>
+                        <li>Sensitive information</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">💡 This leads us to ask: What if we could learn WITHOUT labels?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) Impossible - machines need guidance</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">B) Yes! That's called Unsupervised Learning</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">C) Only with very simple problems</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) Machines would make too many errors</div>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Unsupervised Learning -->
+        <div class="slide">
+            <h2>🔍 Unsupervised Learning</h2>
+            
+            <div class="concept-card">
+                <h3>Learning Without Teachers!</h3>
+                <p><strong>No target variable, no labels - just pure pattern discovery!</strong></p>
+            </div>
+
+            <div class="highlight">
+                <p><span class="emoji">🧩</span> <strong>The Challenge:</strong> Find hidden patterns in data without knowing what to look for</p>
+                <p><span class="emoji">🎯</span> <strong>The Goal:</strong> Let the machine discover structure on its own</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0;">
+                <div class="concept-card" style="border-left-color: #9f7aea;">
+                    <h3>🐾 Animal Clustering Example</h3>
+                    <p>Give 10,000 animal images to the machine</p>
+                    <p><strong>Machine says:</strong> "These animals look similar to each other!"</p>
+                    <p>Groups: Cats, Dogs, Birds, etc.</p>
+                </div>
+                <div class="concept-card" style="border-left-color: #ed8936;">
+                    <h3>🛒 Customer Segmentation</h3>
+                    <p>Analyze shopping patterns</p>
+                    <p><strong>Machine discovers:</strong> "Budget shoppers", "Luxury buyers", "Occasional purchasers"</p>
+                </div>
+            </div>
+
+            <div class="interactive-element" onclick="showClusteringDemo()">
+                <p><span class="emoji">🎨</span> See Clustering in Action! <span class="emoji">🔬</span></p>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">🤔 What's the main difference between supervised and unsupervised learning?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) Supervised is faster</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">B) Unsupervised has no target labels</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">C) Unsupervised uses more data</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) Supervised is more accurate</div>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Semi-Supervised Learning -->
+        <div class="slide">
+            <h2>⚖️ Semi-Supervised Learning</h2>
+            
+            <div class="concept-card">
+                <h3>Best of Both Worlds!</h3>
+                <p><strong>Some labeled data + Lots of unlabeled data = Smart Learning</strong></p>
+            </div>
+
+            <div class="highlight">
+                <p><span class="emoji">💡</span> <strong>The Idea:</strong> Use a small amount of expensive labeled data + lots of free unlabeled data</p>
+                <p><span class="emoji">🎯</span> <strong>The Strategy:</strong> Learn from labels, then apply that knowledge to unlabeled data</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 30px 0;">
+                <div class="concept-card" style="border-left-color: #48bb78;">
+                    <h3>📊 The Mix</h3>
+                    <p><strong>10%</strong> Labeled Data</p>
+                    <p><strong>90%</strong> Unlabeled Data</p>
+                    <p>Still achieves great results!</p>
+                </div>
+                <div class="concept-card" style="border-left-color: #667eea;">
+                    <h3>💰 Cost Effective</h3>
+                    <p>Reduces labeling costs by 90%</p>
+                    <p>Maintains good accuracy</p>
+                </div>
+                <div class="concept-card" style="border-left-color: #ed8936;">
+                    <h3>🎯 Real Applications</h3>
+                    <p>Web page classification</p>
+                    <p>Medical diagnosis</p>
+                    <p>Speech recognition</p>
+                </div>
+            </div>
+
+            <div class="interactive-element" onclick="showSemiSupervisedExample()">
+                <p><span class="emoji">🔄</span> How Semi-Supervised Magic Works <span class="emoji">✨</span></p>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">🧠 Why is semi-supervised learning so practical?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) It's the fastest method</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">B) It reduces labeling costs while maintaining accuracy</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">C) It works with any type of data</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) It requires no human input</div>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Reinforcement Learning -->
+        <div class="slide">
+            <h2>🎮 Reinforcement Learning</h2>
+            
+            <div class="concept-card">
+                <h3>Learning Through Trial and Error!</h3>
+                <p><strong>Like training a pet - reward good behavior, discourage bad behavior</strong></p>
+            </div>
+
+            <div class="highlight">
+                <p><span class="emoji">🎯</span> <strong>The Process:</strong> Agent takes actions → Gets rewards/penalties → Learns better strategies</p>
+                <p><span class="emoji">🔄</span> <strong>The Goal:</strong> Maximize total rewards over time</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0;">
+                <div class="concept-card" style="border-left-color: #f56565;">
+                    <h3>🎮 Gaming Examples</h3>
+                    <ul>
+                        <li><strong>Chess AI:</strong> Win = +1, Lose = -1</li>
+                        <li><strong>Game AI:</strong> Score points = +reward</li>
+                        <li><strong>AlphaGo:</strong> Beat world champions!</li>
+                    </ul>
+                </div>
+                <div class="concept-card" style="border-left-color: #48bb78;">
+                    <h3>🚗 Real World Applications</h3>
+                    <ul>
+                        <li><strong>Self-driving cars:</strong> Safe driving = +reward</li>
+                        <li><strong>Trading bots:</strong> Profit = +reward</li>
+                        <li><strong>Robotics:</strong> Task completion = +reward</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="interactive-element" onclick="showReinforcementDemo()">
+                <p><span class="emoji">🤖</span> Watch RL Agent Learn to Play! <span class="emoji">🎯</span></p>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">🏆 What makes reinforcement learning unique?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) It uses the most data</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">B) It learns through rewards and penalties</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">C) It's the fastest learning method</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) It requires no training data</div>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+        </div>
+
+        <!-- Slide 12: The Complete ML Journey & Future -->
+        <div class="slide">
+            <h2>🚀 The Complete ML Journey</h2>
+            
+            <div class="concept-card">
+                <h3>🎯 The 4 Pillars of Machine Learning</h3>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 15px 0;">
+                <div class="concept-card" style="border-left-color: #667eea;">
+                    <h3>👨‍🏫 Supervised Learning</h3>
+                    <p><strong>Learning with answer keys</strong></p>
+                    <p>✅ High accuracy ❌ Expensive labels</p>
+                </div>
+                <div class="concept-card" style="border-left-color: #9f7aea;">
+                    <h3>🔍 Unsupervised Learning</h3>
+                    <p><strong>Discovering hidden patterns</strong></p>
+                    <p>✅ No labels needed ❌ Harder to validate</p>
+                </div>
+                <div class="concept-card" style="border-left-color: #ed8936;">
+                    <h3>⚖️ Semi-Supervised Learning</h3>
+                    <p><strong>Best of both worlds</strong></p>
+                    <p>✅ Cost-effective ✅ Good accuracy</p>
+                </div>
+                <div class="concept-card" style="border-left-color: #48bb78;">
+                    <h3>🎮 Reinforcement Learning</h3>
+                    <p><strong>Learning through experience</strong></p>
+                    <p>✅ Adapts to environment ❌ Many trials</p>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <h3>🔮 The Future: Generative AI (GAI)</h3>
+                <p>All these ML concepts combine to create powerful AI that can generate text, images, code, and more!</p>
+            </div>
+
+            <div class="interactive-element" onclick="showFutureOfAI()">
+                <p><span class="emoji">🌟</span> What's Next in AI? <span class="emoji">🚀</span></p>
+            </div>
+        </div>
+
+        <!-- Slide 13: Comprehensive Quiz - Part 1 -->
+        <div class="slide">
+            <h2>🧠 Knowledge Assessment - Part 1</h2>
+            
+            <div class="concept-card">
+                <h3>📝 Test Your Understanding</h3>
+                <p>Let's see how well you've grasped the ML fundamentals!</p>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">1️⃣ What was the main reason machine learning was developed?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) Computers were getting faster</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">B) Humans are not scalable - knowledge is lost when experts retire</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">C) To replace all human jobs</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) To make computers smarter than humans</div>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">2️⃣ In supervised learning, what do we call the "correct answer" provided during training?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) Feature</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">B) Algorithm</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">C) Label or Target</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) Function</div>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">3️⃣ What makes unsupervised learning different from supervised learning?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) It uses more data</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">B) It has no target labels - finds patterns on its own</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">C) It's faster to train</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) It's more accurate</div>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Comprehensive Quiz - Part 2 -->
+        <div class="slide">
+            <h2>🧠 Knowledge Assessment - Part 2</h2>
+
+            <div class="quiz-container">
+                <div class="quiz-question">4️⃣ According to the session, how much does it cost to get one unbiased survey response in the US?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) $25</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">B) $50</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">C) $125</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) $200</div>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">5️⃣ What is the main advantage of semi-supervised learning?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) It's the fastest method</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">B) Uses small labeled data + lots of unlabeled data cost-effectively</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">C) It never makes mistakes</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) It works without any human input</div>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">6️⃣ How does reinforcement learning work?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) By copying human behavior exactly</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">B) Through trial and error with rewards and penalties</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">C) By reading textbooks</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) By analyzing historical data only</div>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">7️⃣ What was the Ethiopian language example demonstrating?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">A) Supervised learning for language translation</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">B) Unsupervised learning for clustering</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">C) Reinforcement learning for games</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) Semi-supervised learning for classification</div>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Comprehensive Quiz - Part 3 & Results -->
+        <div class="slide">
+            <h2>🧠 Knowledge Assessment - Final Questions</h2>
+
+            <div class="quiz-container">
+                <div class="quiz-question">8️⃣ Why did rule-based systems fail compared to machine learning?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) They were too expensive</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">B) Rules are static, but real world is dynamic (changing features, distributions, scale)</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">C) They were too slow</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) They required too much memory</div>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">9️⃣ If you want to group customers without knowing the groups beforehand, which ML type would you use?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) Supervised Learning</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">B) Unsupervised Learning (Clustering)</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">C) Reinforcement Learning</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) Rule-based systems</div>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">🔟 What connects traditional ML to modern Generative AI (GAI)?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) They are completely different technologies</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">B) GAI uses ML concepts as building blocks (it's a subset of ML)</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">C) GAI replaced all ML techniques</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) They have no connection</div>
+                </div>
+                <div class="quiz-feedback"></div>
+            </div>
+
+            <div class="interactive-element" onclick="showQuizResults()">
+                <p><span class="emoji">📊</span> Click to see your quiz performance! <span class="emoji">🎯</span></p>
+            </div>
+
+            <div style="margin-top: 20px; text-align: center;">
+                <h3>🎉 Assessment Complete!</h3>
+                <p>Ready for your certificate?</p>
+                <div class="interactive-element" onclick="showCertificate()">
+                    <p><span class="emoji">🏆</span> Get Your Completion Certificate! <span class="emoji">📜</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="navigation">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function updateSlideCounter() {
+            document.getElementById('slideCounter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        function updateProgressBar() {
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            
+            updateSlideCounter();
+            updateProgressBar();
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function changeSlide(direction) {
+            if (direction === 1 && currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            } else if (direction === -1 && currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        function selectQuizOption(element, isCorrect) {
+            const options = element.parentNode.querySelectorAll('.quiz-option');
+            const feedback = element.parentNode.parentNode.querySelector('.quiz-feedback');
+            
+            // Remove previous selections
+            options.forEach(opt => {
+                opt.classList.remove('selected', 'correct', 'incorrect');
+            });
+            
+            // Mark selected option
+            element.classList.add('selected');
+            
+            // Show correct/incorrect styling after a brief delay
+            setTimeout(() => {
+                if (isCorrect) {
+                    element.classList.add('correct');
+                    feedback.textContent = '🎉 Correct! Great job!';
+                    feedback.className = 'quiz-feedback correct';
+                } else {
+                    element.classList.add('incorrect');
+                    // Find and highlight the correct answer
+                    options.forEach(opt => {
+                        if (opt.onclick.toString().includes('true')) {
+                            opt.classList.add('correct');
+                        }
+                    });
+                    feedback.textContent = '❌ Not quite right. The correct answer is highlighted above.';
+                    feedback.className = 'quiz-feedback incorrect';
+                }
+                feedback.style.display = 'block';
+            }, 500);
+        }
+
+        // Interactive elements functions
+        function showFunFact() {
+            alert('🤖 Fun Fact: The term "Artificial Intelligence" was first coined in 1956 at a conference at Dartmouth College. The field is almost 70 years old!');
+        }
+
+        function showDoctorExample() {
+            alert('👩‍⚕️ Doctor Example:\n\nA new doctor might make 10-15 mistakes out of 100 early diagnoses due to inexperience. After 30-40 years, they become experts but then retire, and a new doctor starts the cycle again.\n\nMachine Learning solves this by learning once and preserving that knowledge forever!');
+        }
+
+        function showAlgorithmEvolution() {
+            alert('📈 Algorithm Evolution:\n\n1. Simple: Linear Regression\n2. Moderate: Decision Trees\n3. Complex: Random Forests, XGBoost\n4. Advanced: Neural Networks (mimicking human neurons)\n\nEach step made machines smarter at finding patterns!');
+        }
+
+        function showLanguageExample() {
+            alert('🌍 Real Story:\n\nA student from Ethiopia wanted to create a translation tool for his native language (Kissy) to English. Using supervised learning, they fed the machine thousands of Kissy-English sentence pairs.\n\nThe machine learned the patterns and can now translate between the languages!');
+        }
+
+        function showScaleComparison() {
+            alert('🧮 Scale Challenge:\n\nHuman vs Machine (adding numbers):\n• 2 numbers: Human 1s, Machine 1s\n• 100 numbers: Human 30s, Machine 1s\n• 10,000 numbers: Human 10min, Machine 1s\n• 1,000,000 numbers: Human 1 day (with errors), Machine 1 minute\n\nMachines scale infinitely!');
+        }
+
+        function showClusteringDemo() {
+            alert('🎨 Clustering in Action:\n\n🐾 Animal Example:\n• Input: 10,000 unlabeled animal images\n• Machine discovers: "These look similar!"\n• Output: Groups of cats, dogs, birds, fish\n\n🛒 Customer Example:\n• Input: Shopping behavior data\n• Machine finds: Budget buyers, luxury shoppers, occasional customers\n\nNo human told it what to look for - pure pattern discovery!');
+        }
+
+        function showSemiSupervisedExample() {
+            alert('🔄 Semi-Supervised Magic:\n\n📧 Email Classification Example:\n• Start with 100 labeled emails (spam/not spam)\n• Add 10,000 unlabeled emails\n• Machine learns from the 100, then applies knowledge to the 10,000\n• Result: 90% cost reduction, 95% accuracy maintained!\n\n💡 The secret: Use confident predictions on unlabeled data to expand the training set!');
+        }
+
+        function showReinforcementDemo() {
+            alert('🤖 RL Agent Learning:\n\n🎮 Game Example:\n• Agent starts randomly moving\n• Hits wall = -1 point (penalty)\n• Reaches goal = +10 points (reward)\n• After 1000 tries: Learns optimal path!\n\n🚗 Self-Driving Car:\n• Stay in lane = +1\n• Safe distance = +1\n• Accident = -1000\n• Result: Learns to drive safely through trial and error!');
+        }
+
+        function showFutureOfAI() {
+            alert('🌟 The Future of AI:\n\n🚀 Current Trends:\n• Large Language Models (ChatGPT, GPT-4)\n• Multimodal AI (text + images + audio)\n• Few-shot learning (learn from few examples)\n• Self-supervised learning (no human labels)\n\n🔮 Coming Soon:\n• AI that learns like humans\n• Artificial General Intelligence (AGI)\n• AI that can reason and understand context\n\nAll built on the ML foundations you just learned!');
+        }
+
+        function showQuizResults() {
+            // Count correct answers from quiz feedback elements
+            const correctAnswers = document.querySelectorAll('.quiz-feedback.correct').length;
+            const totalQuestions = 10;
+            const percentage = Math.round((correctAnswers / totalQuestions) * 100);
+            
+            let performance = '';
+            let emoji = '';
+            
+            if (percentage >= 90) {
+                performance = 'Outstanding! You\'re an ML expert! 🌟';
+                emoji = '🏆';
+            } else if (percentage >= 80) {
+                performance = 'Excellent! You have a strong grasp of ML concepts! 👏';
+                emoji = '🥇';
+            } else if (percentage >= 70) {
+                performance = 'Good job! You understand the fundamentals well! 👍';
+                emoji = '🥈';
+            } else if (percentage >= 60) {
+                performance = 'Not bad! Consider reviewing some concepts. 📚';
+                emoji = '🥉';
+            } else {
+                performance = 'Keep learning! Review the material and try again. 💪';
+                emoji = '📖';
+            }
+            
+            alert(`${emoji} QUIZ RESULTS ${emoji}\n\nScore: ${correctAnswers}/${totalQuestions} (${percentage}%)\n\n${performance}\n\nKey Topics Covered:\n✅ Human Scalability Problem\n✅ Supervised Learning\n✅ Unsupervised Learning  \n✅ Semi-supervised Learning\n✅ Reinforcement Learning\n✅ Real-world Applications\n✅ ML vs Rule-based Systems\n✅ Cost of Data Labeling\n✅ Future of AI\n\nGreat effort! 🚀`);
+        }
+
+        function showCertificate() {
+            alert('🏆 CERTIFICATE OF COMPLETION 📜\n\nCongratulations!\n\nYou have successfully completed:\n"Complete AI & Machine Learning Fundamentals"\n\nYou now master:\n✅ The human scalability problem\n✅ Supervised Learning (learning with labels)\n✅ Unsupervised Learning (pattern discovery)\n✅ Semi-supervised Learning (best of both worlds)\n✅ Reinforcement Learning (trial and error)\n✅ Real-world applications and challenges\n✅ The future of AI and GAI\n\nYou\'re ready for the next level! 🚀');
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+
+        // Initialize
+        updateSlideCounter();
+        updateProgressBar();
+        document.getElementById('prevBtn').disabled = true;
+    </script>
+</body>
+</html>

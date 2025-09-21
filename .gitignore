@@ -1,0 +1,29 @@
+# Large model files
+*.safetensors
+*.bin
+*.h5
+*.pkl
+*.model
+
+# System files
+.DS_Store
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Large datasets
+*.csv
+*.json
+*.zip
+
+# Temporary files
+*.tmp
+*.log
